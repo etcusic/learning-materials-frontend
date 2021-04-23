@@ -5,7 +5,7 @@ import './App.css';
 class App extends Component {
 
   componentDidMount(){
-    fetch("https://learning-materials-api.herokuapp.com/")
+    fetch("https://learning-materials-api.herokuapp.com/decks")
     .then(response => response.json())
     .then(decks => console.log(decks))
   }
