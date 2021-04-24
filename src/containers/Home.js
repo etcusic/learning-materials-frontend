@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { initializeApp } from '../actions/initializeApp'
+import Placeholder from '../components/Placeholder.js'
+import OptionsContainer from './OptionsContainer';
+import ExerciseContainer from './ExerciseContainer';
 
 class Home extends Component {
 
     constructor(){
         super()
         this.state = {
-            decks: []
+            decks: [],
+            view: <Placeholder />
         }
     }
 
@@ -18,6 +22,10 @@ class Home extends Component {
         this.setState({ decks: decks })
     }
 
+    changeView = (view) => {
+        this.setState({ view: view })
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -25,8 +33,12 @@ class Home extends Component {
     render(){
         return (
         <div>
-            <h1>Home Page</h1>
-            <h2><button onClick={ this.checkState }>Check State</button></h2>
+            <h2>
+                <button onClick={ this.checkState }>Check State</button>
+                <button onClick={ () => this.changeView(<OptionsContainer />) }>Options</button>
+                <button onClick={ () => this.changeView(<ExerciseContainer />) }>Exercise</button>
+            </h2>
+            { this.state.view }
         </div>
         );
     }
