@@ -53,15 +53,14 @@ class OptionsContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome!</h1>
-                <h2>Select your exercise.</h2>
+                <h1>Select your exercise.</h1>
                 
-                <h3>
+                <h2>
                     <label>Level: </label>
                     { this.displayLevels() }
-                </h3>
+                </h2>
                 
-                <h3>
+                <h2>
                     <label>Deck: </label>
                     <select onChange={ event => this.changeDeck(event) }>
                         <option key="deck-0" value="0">-- select deck --</option>
@@ -70,21 +69,21 @@ class OptionsContainer extends Component {
                                     .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
                         }
                     </select>
-                </h3>
+                </h2>
                 
-                <h3>
+                <h2>
                     <label>Activity: </label>
                     { this.displayActivities() }
-                </h3>
+                </h2>
 
-                <h3>
+                <h2>
                     { this.state.deckId === 0 || 
                         this.state.level === 0 || 
                         this.state.activity === "invalid" ? 
                         "All fields must be valid to continue" : 
                         <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
                     }
-                </h3>
+                </h2>
                 
             </div>
         )

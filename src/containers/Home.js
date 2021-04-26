@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { initializeApp } from '../actions/initializeApp'
 import Placeholder from '../components/Placeholder.js'
+import Welcome from '../components/Welcome.js'
 import OptionsContainer from './OptionsContainer';
 import ExerciseContainer from './ExerciseContainer';
 import BeginExerciseButton from '../components/BeginExerciseButton'
@@ -17,6 +18,7 @@ class Home extends Component {
 
     componentDidMount(){
        initializeApp(this.setDecks)
+       this.setState({ view: <Welcome displayOptions={ this.displayOptions } /> })
     }
 
     setDecks = (decks) => {
@@ -38,7 +40,7 @@ class Home extends Component {
             view: <BeginExerciseButton 
                     exercise={ newExercise } 
                     beginExercise={ this.beginExercise } 
-                    backToOptions={ this.backToOptions }
+                    displayOptions={ this.displayOptions }
             /> })
     }
 

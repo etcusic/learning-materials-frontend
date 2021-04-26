@@ -1,9 +1,9 @@
 import React from 'react';
 
-const BeginExerciseButton = ({ exercise, beginExercise, backToOptions }) => {
+const BeginExerciseButton = ({ exercise, beginExercise, displayOptions }) => {
     return (
         <div>
-            <button onClick={ backToOptions }>Back to Options</button>
+            <button onClick={ displayOptions }>Back to Options</button>
             <h2>Level: { exercise.deck.level }</h2>
             <h2>Deck: { exercise.deck.name }</h2>
             <h2>Activity: { exercise.activity }</h2>
