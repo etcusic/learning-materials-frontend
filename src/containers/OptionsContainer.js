@@ -11,6 +11,26 @@ class OptionsContainer extends Component {
         }
     }
 
+    displayLevels = () => {
+        const levels = [1]
+        return (
+            <select onChange={ event => this.changeLevel(event) }>
+                <option key="level-0" value="0">-- select level --</option>
+                { levels.map((level, i) => <option key={`level-${i + 1}`} value={ level }>{ level }</option>) }
+            </select>
+        )
+    }
+
+    displayActivities = () => {
+        const activities = ["Practice", "Multiple Choice", "Speed Game", "Connect Four"]
+        return (
+            <select onChange={ event => this.changeActivity(event) }>
+                <option key="activity-0" value="invalid">-- select activity --</option>
+                { activities.map((activity, i) => <option key={`activity-${i + 1}`} value={ activity }>{ activity }</option>) }
+            </select>
+        )
+    }
+
     changeLevel = (event) => {
         let value = parseInt(event.target.value)
         this.setState({ level: value })
@@ -38,26 +58,19 @@ class OptionsContainer extends Component {
                 <button onClick={ this.checkState }>Check State</button>
                 
                 <label>Level: </label>
-                <select onChange={ event => this.changeLevel(event) }>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                </select>
+                { this.displayLevels() }
 
                 <label>Deck: </label>
                 <select onChange={ event => this.changeDeck(event) }>
+                    <option key="deck-0" value="0">-- select deck --</option>
                     { this.props.decks
                                 .filter(deck => deck.level === this.state.level)
-                                .map(deck => <option value={deck.id}>{ deck.name }</option>) 
+                                .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
                     }
                 </select>
 
                 <label>Activity: </label>
-                <select onChange={ event => this.changeActivity(event) }>
-                    <option value="practice">practice</option>
-                    <option value="multiple choice">multiple choice</option>
-                    <option value="speed">speed</option>speed
-                    <option value="connect four">connect four</option>
-                </select>
+                { this.displayActivities() }
 
                 <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
             </div>
