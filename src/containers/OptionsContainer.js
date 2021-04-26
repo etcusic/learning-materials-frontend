@@ -53,7 +53,8 @@ class OptionsContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Options Container</h1>
+                <h1>Welcome!</h1>
+                <h2>Select your exercise.</h2>
                 
                 <h3>
                     <label>Level: </label>
