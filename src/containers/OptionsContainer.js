@@ -31,14 +31,6 @@ class OptionsContainer extends Component {
         )
     }
 
-    completeOptions = () => {
-        return <h3>All fields must be valid to continue</h3>
-    }
-
-    displayButton = () => {
-        return <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
-    }
-
     changeLevel = (event) => {
         let value = parseInt(event.target.value)
         this.setState({ level: value })
@@ -63,26 +55,35 @@ class OptionsContainer extends Component {
             <div>
                 <h1>Options Container</h1>
                 
-                <button onClick={ this.checkState }>Check State</button>
+                <h3>
+                    <label>Level: </label>
+                    { this.displayLevels() }
+                </h3>
                 
-                <label>Level: </label>
-                { this.displayLevels() }
+                <h3>
+                    <label>Deck: </label>
+                    <select onChange={ event => this.changeDeck(event) }>
+                        <option key="deck-0" value="0">-- select deck --</option>
+                        { this.props.decks
+                                    .filter(deck => deck.level === this.state.level)
+                                    .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
+                        }
+                    </select>
+                </h3>
+                
+                <h3>
+                    <label>Activity: </label>
+                    { this.displayActivities() }
+                </h3>
 
-                <label>Deck: </label>
-                <select onChange={ event => this.changeDeck(event) }>
-                    <option key="deck-0" value="0">-- select deck --</option>
-                    { this.props.decks
-                                .filter(deck => deck.level === this.state.level)
-                                .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
+                <h3>
+                    { this.state.deckId === 0 || 
+                        this.state.level === 0 || 
+                        this.state.activity === "invalid" ? 
+                        "All fields must be valid to continue" : 
+                        <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
                     }
-                </select>
-
-                <label>Activity: </label>
-                { this.displayActivities() }
-
-                <div>
-                    { this.state.deckId === 0 || this.state.level === 0 || this.state.activity === "invalid" ? this.completeOptions() : this.displayButton()  }
-                </div>
+                </h3>
                 
                 
             </div>
