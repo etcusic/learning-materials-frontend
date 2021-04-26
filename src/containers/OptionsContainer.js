@@ -5,9 +5,9 @@ class OptionsContainer extends Component {
     constructor(){
         super()
         this.state = {
-            deck: {}, 
+            deckId: 0, 
             level: 0, 
-            activity: null
+            activity: "invalid"
         }
     }
 
@@ -31,6 +31,18 @@ class OptionsContainer extends Component {
         )
     }
 
+    completeOptions = () => {
+        return (
+            <div>
+                All fields must be valid to continue
+            </div>
+        )
+    }
+
+    displayButton = () => {
+        return <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
+    }
+
     changeLevel = (event) => {
         let value = parseInt(event.target.value)
         this.setState({ level: value })
@@ -38,7 +50,7 @@ class OptionsContainer extends Component {
 
     changeDeck = (event) => {
         let value = parseInt(event.target.value)
-        this.setState({ deck: this.props.decks.find(deck => deck.id === value) })
+        this.setState({ deckId: value })
     }
 
     changeActivity = (event) => {
@@ -72,7 +84,8 @@ class OptionsContainer extends Component {
                 <label>Activity: </label>
                 { this.displayActivities() }
 
-                <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
+                { this.state.deckId === 0 || this.state.level === 0 || this.state.activity === "invalid" ? this.completeOptions() : this.displayButton()  }
+                
             </div>
         )
     }
