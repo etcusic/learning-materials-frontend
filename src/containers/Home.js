@@ -10,8 +10,7 @@ class Home extends Component {
         super()
         this.state = {
             decks: [],
-            view: <Placeholder />,
-            exercise: {deck: [], level: 0, activity: null}
+            view: <Placeholder />
         }
     }
 
@@ -27,6 +26,10 @@ class Home extends Component {
         this.setState({ view: view })
     }
 
+    setExercise = (exercise) => {
+        this.setState({ view: <ExerciseContainer exercise={ exercise } /> })
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -36,7 +39,7 @@ class Home extends Component {
         <div>
             <h2>
                 <button onClick={ this.checkState }>Check State</button>
-                <button onClick={ () => this.changeView(<OptionsContainer decks={ this.state.decks } />) }>Options</button>
+                <button onClick={ () => this.changeView(<OptionsContainer decks={ this.state.decks } setExercise={ this.setExercise } />) }>Options</button>
                 <button onClick={ () => this.changeView(<ExerciseContainer />) }>Exercise</button>
             </h2>
             { this.state.view }

@@ -12,20 +12,17 @@ class OptionsContainer extends Component {
     }
 
     changeLevel = (event) => {
-        let value = event.target.value
+        let value = parseInt(event.target.value)
         this.setState({ level: value })
     }
 
     changeDeck = (event) => {
-        let value = event.target.value
-        console.log(value)
-        console.log(this.props.decks.find(deck => deck.id == value))
-        this.setState({ deck: this.props.decks.find(deck => deck.id == value) })
+        let value = parseInt(event.target.value)
+        this.setState({ deck: this.props.decks.find(deck => deck.id === value) })
     }
 
     changeActivity = (event) => {
         let value = event.target.value
-        console.log(value)
         this.setState({ activity: value })
     }
 
@@ -49,7 +46,7 @@ class OptionsContainer extends Component {
                 <label>Deck: </label>
                 <select onChange={ event => this.changeDeck(event) }>
                     { this.props.decks
-                                .filter(deck => deck.level == this.state.level)
+                                .filter(deck => deck.level === this.state.level)
                                 .map(deck => <option value={deck.id}>{ deck.name }</option>) 
                     }
                 </select>
@@ -61,6 +58,8 @@ class OptionsContainer extends Component {
                     <option value="speed">speed</option>speed
                     <option value="connect four">connect four</option>
                 </select>
+
+                <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
             </div>
         )
     }
