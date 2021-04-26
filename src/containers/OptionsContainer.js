@@ -86,7 +86,6 @@ class OptionsContainer extends Component {
                     }
                 </h3>
                 
-                
             </div>
         )
     }

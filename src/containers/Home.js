@@ -3,6 +3,7 @@ import { initializeApp } from '../actions/initializeApp'
 import Placeholder from '../components/Placeholder.js'
 import OptionsContainer from './OptionsContainer';
 import ExerciseContainer from './ExerciseContainer';
+import BeginExerciseButton from '../components/BeginExerciseButton'
 
 class Home extends Component {
 
@@ -33,7 +34,23 @@ class Home extends Component {
             activity: exercise.activity,
             deck: deck
         }
-        this.setState({ view: <ExerciseContainer exercise={ newExercise } /> })
+        this.setState({ 
+            view: <BeginExerciseButton 
+                    exercise={ newExercise } 
+                    beginExercise={ this.beginExercise } 
+                    backToOptions={ this.backToOptions }
+            /> })
+    }
+
+    displayOptions = () => {
+        this.setState({ view: <OptionsContainer 
+                                decks={ this.state.decks } 
+                                setExercise={ this.setExercise } 
+                        />})
+    }
+
+    beginExercise = (exercise) => {
+        this.setState({ view: <ExerciseContainer exercise={ exercise } />})
     }
 
     checkState = () => {
@@ -45,8 +62,13 @@ class Home extends Component {
         <div>
             <h2>
                 <button onClick={ this.checkState }>Check State</button>
-                <button onClick={ () => this.changeView(<OptionsContainer decks={ this.state.decks } setExercise={ this.setExercise } />) }>Options</button>
-                <button onClick={ () => this.changeView(<ExerciseContainer />) }>Exercise</button>
+                <button onClick={ () => {
+                    return this.changeView(<OptionsContainer 
+                                            decks={ this.state.decks } 
+                                            setExercise={ this.setExercise } 
+                                            />)
+                    } 
+                }>Options</button>
             </h2>
             { this.state.view }
         </div>
