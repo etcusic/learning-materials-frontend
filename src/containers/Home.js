@@ -62,16 +62,6 @@ class Home extends Component {
     render(){
         return (
         <div>
-            <h2>
-                <button onClick={ this.checkState }>Check State</button>
-                <button onClick={ () => {
-                    return this.changeView(<OptionsContainer 
-                                            decks={ this.state.decks } 
-                                            setExercise={ this.setExercise } 
-                                            />)
-                    } 
-                }>Options</button>
-            </h2>
             { this.state.view }
         </div>
         );
