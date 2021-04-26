@@ -4,9 +4,9 @@ class OptionsContainer extends Component {
 
     constructor(){
         super()
-        this.state = {
-            deckId: 0, 
+        this.state = { 
             level: 0, 
+            deckId: 0,
             activity: "invalid"
         }
     }
@@ -32,11 +32,7 @@ class OptionsContainer extends Component {
     }
 
     completeOptions = () => {
-        return (
-            <div>
-                All fields must be valid to continue
-            </div>
-        )
+        return <h3>All fields must be valid to continue</h3>
     }
 
     displayButton = () => {
@@ -84,7 +80,10 @@ class OptionsContainer extends Component {
                 <label>Activity: </label>
                 { this.displayActivities() }
 
-                { this.state.deckId === 0 || this.state.level === 0 || this.state.activity === "invalid" ? this.completeOptions() : this.displayButton()  }
+                <div>
+                    { this.state.deckId === 0 || this.state.level === 0 || this.state.activity === "invalid" ? this.completeOptions() : this.displayButton()  }
+                </div>
+                
                 
             </div>
         )

@@ -27,7 +27,13 @@ class Home extends Component {
     }
 
     setExercise = (exercise) => {
-        this.setState({ view: <ExerciseContainer exercise={ exercise } /> })
+        let deck = this.state.decks.find(deck => deck.id === exercise.deckId)
+        let newExercise = {
+            level: exercise.level,
+            activity: exercise.activity,
+            deck: deck
+        }
+        this.setState({ view: <ExerciseContainer exercise={ newExercise } /> })
     }
 
     checkState = () => {
