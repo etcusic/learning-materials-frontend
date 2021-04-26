@@ -5,10 +5,32 @@ class OptionsContainer extends Component {
     constructor(){
         super()
         this.state = {
-            deck: [], 
+            deck: {}, 
             level: 0, 
             activity: null
         }
+    }
+
+    changeLevel = (event) => {
+        let value = event.target.value
+        this.setState({ level: value })
+    }
+
+    changeDeck = (event) => {
+        let value = event.target.value
+        console.log(value)
+        console.log(this.props.decks.find(deck => deck.id == value))
+        this.setState({ deck: this.props.decks.find(deck => deck.id == value) })
+    }
+
+    changeActivity = (event) => {
+        let value = event.target.value
+        console.log(value)
+        this.setState({ activity: value })
+    }
+
+    checkState = () => {
+        console.log(this.state)
     }
 
     render() {
@@ -16,27 +38,28 @@ class OptionsContainer extends Component {
             <div>
                 <h1>Options Container</h1>
                 
+                <button onClick={ this.checkState }>Check State</button>
+                
                 <label>Level: </label>
-                <select>
+                <select onChange={ event => this.changeLevel(event) }>
                     <option value="0">0</option>
                     <option value="1">1</option>
                 </select>
 
                 <label>Deck: </label>
-                <select>
-                    { this.props.decks.map(deck => {
-                        if (deck.level == this.state.level){
-                            <option value={deck.id}>deck.name</option>
-                        }
-                    }) }
+                <select onChange={ event => this.changeDeck(event) }>
+                    { this.props.decks
+                                .filter(deck => deck.level == this.state.level)
+                                .map(deck => <option value={deck.id}>{ deck.name }</option>) 
+                    }
                 </select>
 
                 <label>Activity: </label>
-                <select>
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
+                <select onChange={ event => this.changeActivity(event) }>
+                    <option value="practice">practice</option>
+                    <option value="multiple choice">multiple choice</option>
+                    <option value="speed">speed</option>speed
+                    <option value="connect four">connect four</option>
                 </select>
             </div>
         )
