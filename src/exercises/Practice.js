@@ -8,12 +8,17 @@ class Practice extends Component {
         this.state = {
             cards: [],
             completedCards: [],
-            currentCard: {}
+            currentCard: {side_a: "", side_b: ""},
+            currentCardIndex: 0
         }
     }
 
     componentDidMount(){
-        let cards = shuffleCards(this.props.cards)
+        let cards = shuffleCards(this.props.cards).map(card => {
+            let copy = Object.assign({}, card)
+            copy.completed = false
+            return copy
+        })
         this.setState({ cards: cards })
     }
 
