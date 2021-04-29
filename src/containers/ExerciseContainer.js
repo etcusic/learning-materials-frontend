@@ -7,7 +7,7 @@ class ExerciseContainer extends Component {
         return (
             <div>
                 <h1>Exercise Container</h1>
-                <Practice cards={ this.props.exercise.deck.cards } />
+                <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } />
             </div>
         )
     }

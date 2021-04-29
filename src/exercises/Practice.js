@@ -88,6 +88,9 @@ class Practice extends Component {
                         }
                     </div>
 
+                    <br></br><br></br>
+                    <button onClick={ this.props.exitExercise }>Exit Exercise</button>
+
                 </div>
             </div>
         )
