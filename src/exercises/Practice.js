@@ -23,7 +23,12 @@ class Practice extends Component {
 
     nextCard = () => {
         let index = this.state.currentCardIndex + 1
-        index === this.state.cards.length ? this.setState({ nextRoundButton: true }) : this.setState({ currentCardIndex: index })      
+        index < this.state.cards.length ? 
+        this.setState({ currentCardIndex: index }) :
+        this.setState({ 
+            currentCardIndex: 0,
+            nextRoundButton: true 
+        })    
     }
 
     removeCard = () => {
@@ -31,9 +36,14 @@ class Practice extends Component {
         let completedCards = [...this.state.completedCards]
         completedCards.push(card)
         let cards = [...this.state.cards].filter((card, index) => index !== this.state.currentCardIndex)
+        // check if it is the last card and display accordingly
+        let trueOrFalse = (this.state.cards.length - 1) === this.state.currentCardIndex ? true : false
+        let index = trueOrFalse ? 0 : this.state.currentCardIndex
         this.setState({
             cards: cards,
-            completedCards: completedCards
+            completedCards: completedCards,
+            currentCardIndex: index,
+            nextRoundButton: trueOrFalse
         })
     }
 
