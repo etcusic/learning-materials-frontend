@@ -9,6 +9,10 @@ class Card extends Component {
         }
     }
 
+    flipCard = () => {
+        this.state.side === "side_a" ? this.setState({ side: "side_b" }) : this.setState({ side: "side_a" })
+    }
+
     render() {
         return (
             <div>
@@ -24,7 +28,7 @@ class Card extends Component {
 
                     <br></br><br></br>
                     <div>
-                        <button>Flip Card</button>
+                        <button onClick={ this.flipCard }>Flip Card</button>
                     </div>
 
                 </div>

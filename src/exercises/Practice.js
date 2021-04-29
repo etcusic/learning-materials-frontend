@@ -26,6 +26,15 @@ class Practice extends Component {
         })
     }
 
+    nextCard = () => {
+        let index = this.state.currentCardIndex + 1
+        let cards = [...this.state.cards]
+        this.setState({
+            currentCard: cards[index],
+            currentCardIndex: index
+        })
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -49,6 +58,9 @@ class Practice extends Component {
                     <div>
                         <Card card={ this.state.currentCard } />
                     </div>
+                    
+                    <br></br><br></br>
+                    <button onClick={ this.nextCard }>Next Card</button>
 
                 </div>
             </div>
