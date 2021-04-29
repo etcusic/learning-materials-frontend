@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import Card from '../components/Card'
 
 class Practice extends Component {
 
@@ -19,7 +20,10 @@ class Practice extends Component {
             copy.completed = false
             return copy
         })
-        this.setState({ cards: cards })
+        this.setState({ 
+            cards: cards,
+            currentCard: cards[0] 
+        })
     }
 
     checkState = () => {
@@ -32,18 +36,18 @@ class Practice extends Component {
                 <button onClick={ this.checkState }>Check State</button>
                 <h2>Practice Exercise</h2>
                 <div>
-                    <div >
+                    <div>
                         <h2>Cards left:</h2>
                         <h3>{ this.state.cards.length - this.state.completedCards.length }</h3>
                     </div>
 
-                    <div >
-
-                    </div>
-
-                    <div >
+                    <div>
                         <h2>Cards completed:</h2>
                         <h3>{ this.state.completedCards.length }</h3>
+                    </div>
+
+                    <div>
+                        <Card card={ this.state.currentCard } />
                     </div>
 
                 </div>
