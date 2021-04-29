@@ -6,7 +6,9 @@ class Practice extends Component {
     constructor(){
         super()
         this.state = {
-            cards: []
+            cards: [],
+            completedCards: [],
+            currentCard: {}
         }
     }
 
@@ -24,6 +26,22 @@ class Practice extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
                 <h2>Practice Exercise</h2>
+                <div>
+                    <div >
+                        <h2>Cards left:</h2>
+                        <h3>{ this.state.cards.length - this.state.completedCards.length }</h3>
+                    </div>
+
+                    <div >
+
+                    </div>
+
+                    <div >
+                        <h2>Cards completed:</h2>
+                        <h3>{ this.state.completedCards.length }</h3>
+                    </div>
+
+                </div>
             </div>
         )
     }

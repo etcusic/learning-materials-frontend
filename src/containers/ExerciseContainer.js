@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Practice from '../exercises/Practice';
-import { shuffleCards } from '../helperFunctions/shuffleCards'
 
 class ExerciseContainer extends Component {
 
