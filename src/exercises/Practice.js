@@ -7,31 +7,34 @@ class Practice extends Component {
     constructor(){
         super()
         this.state = {
-            cards: [],
+            cards: [{side_a: "A", side_b: "B"}],
             completedCards: [],
-            currentCard: {side_a: "", side_b: ""},
             currentCardIndex: 0
         }
     }
 
     componentDidMount(){
-        let cards = shuffleCards(this.props.cards).map(card => {
-            let copy = Object.assign({}, card)
-            copy.completed = false
-            return copy
-        })
+        let cards = shuffleCards(this.props.cards)
         this.setState({ 
-            cards: cards,
-            currentCard: cards[0] 
+            cards: cards
         })
     }
 
     nextCard = () => {
         let index = this.state.currentCardIndex + 1
-        let cards = [...this.state.cards]
         this.setState({
-            currentCard: cards[index],
             currentCardIndex: index
+        })
+    }
+
+    removeCard = () => {
+        let card = Object.assign({}, this.state.cards[this.state.currentCardIndex])
+        let completedCards = [...this.state.completedCards]
+        completedCards.push(card)
+        let cards = [...this.state.cards].filter((card, index) => index !== this.state.currentCardIndex)
+        this.setState({
+            cards: cards,
+            completedCards: completedCards
         })
     }
 
@@ -47,7 +50,7 @@ class Practice extends Component {
                 <div>
                     <div>
                         <h2>Cards left:</h2>
-                        <h3>{ this.state.cards.length - this.state.completedCards.length }</h3>
+                        <h3>{ this.state.cards.length }</h3>
                     </div>
 
                     <div>
@@ -56,11 +59,11 @@ class Practice extends Component {
                     </div>
 
                     <div>
-                        <Card card={ this.state.currentCard } />
+                        <Card card={ this.state.cards[this.state.currentCardIndex] } removeCard={ this.removeCard } />
                     </div>
                     
-                    <br></br><br></br>
                     <button onClick={ this.nextCard }>Next Card</button>
+                    <button onClick={ this.removeCard }>Remove Card</button>
 
                 </div>
             </div>

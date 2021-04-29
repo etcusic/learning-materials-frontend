@@ -18,19 +18,15 @@ class Card extends Component {
             <div>
                 <h3>Card component: </h3>
                 <div className="practice-card">
-                    
-                    <div className="practice-checkbox">
-                        <input type="checkbox"></input>
+                    <div>
+                        <button onClick={ this.flipCard }>Flip Card</button>
                     </div>
+
                     <br></br>
 
                     { this.props.card[this.state.side] }
 
                     <br></br><br></br>
-                    <div>
-                        <button onClick={ this.flipCard }>Flip Card</button>
-                    </div>
-
                 </div>
             </div>
         )
