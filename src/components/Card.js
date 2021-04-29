@@ -12,9 +12,22 @@ class Card extends Component {
     render() {
         return (
             <div>
-            <h3>Card component: </h3>
-                { console.log(this.props.card) }
-                { this.props.card[this.state.side] }
+                <h3>Card component: </h3>
+                <div className="practice-card">
+                    
+                    <div className="practice-checkbox">
+                        <input type="checkbox"></input>
+                    </div>
+                    <br></br>
+
+                    { this.props.card[this.state.side] }
+
+                    <br></br><br></br>
+                    <div>
+                        <button>Flip Card</button>
+                    </div>
+
+                </div>
             </div>
         )
     }
