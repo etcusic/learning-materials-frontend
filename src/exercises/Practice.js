@@ -9,7 +9,8 @@ class Practice extends Component {
         this.state = {
             cards: [{side_a: "A", side_b: "B"}],
             completedCards: [],
-            currentCardIndex: 0
+            currentCardIndex: 0,
+            nextRoundButton: false
         }
     }
 
@@ -22,9 +23,7 @@ class Practice extends Component {
 
     nextCard = () => {
         let index = this.state.currentCardIndex + 1
-        this.setState({
-            currentCardIndex: index
-        })
+        index === this.state.cards.length ? this.setState({ nextRoundButton: true }) : this.setState({ currentCardIndex: index })      
     }
 
     removeCard = () => {
@@ -38,6 +37,10 @@ class Practice extends Component {
         })
     }
 
+    nextRound = () => {
+        this.setState({ currentCardIndex: 0 })
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -49,13 +52,15 @@ class Practice extends Component {
                 <h2>Practice Exercise</h2>
                 <div>
                     <div>
-                        <h2>Cards left:</h2>
-                        <h3>{ this.state.cards.length }</h3>
+                        <h3>Cards left: { this.state.cards.length }</h3>
                     </div>
 
                     <div>
-                        <h2>Cards completed:</h2>
-                        <h3>{ this.state.completedCards.length }</h3>
+                        <h3>Cards completed: { this.state.completedCards.length }</h3>
+                    </div>
+
+                    <div>
+                        <h3>Current Card: { this.state.currentCardIndex + 1 } / { this.state.cards.length }</h3>
                     </div>
 
                     <div>
@@ -64,6 +69,10 @@ class Practice extends Component {
                     
                     <button onClick={ this.nextCard }>Next Card</button>
                     <button onClick={ this.removeCard }>Remove Card</button>
+
+                    <br></br><br></br>
+
+                    { this.state.nextRoundButton ? <button onClick={ this.nextRound }>Next Round</button> : <div>X</div>}
 
                 </div>
             </div>
