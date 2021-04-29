@@ -16,7 +16,7 @@ class Card extends Component {
     render() {
         return (
             <div>
-                <h3>Card component: </h3>
+                <h2>Card component: </h2>
                 <div className="practice-card">
                     <div>
                         <button onClick={ this.flipCard }>Flip Card</button>
@@ -27,6 +27,10 @@ class Card extends Component {
                     { this.props.card[this.state.side] }
 
                     <br></br><br></br>
+
+                    <button onClick={ this.props.nextCard }>Next Card</button>
+                    <button onClick={ this.props.removeCard }>Remove Card</button>
+
                 </div>
             </div>
         )

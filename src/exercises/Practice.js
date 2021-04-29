@@ -38,7 +38,10 @@ class Practice extends Component {
     }
 
     nextRound = () => {
-        this.setState({ currentCardIndex: 0 })
+        this.setState({ 
+            currentCardIndex: 0,
+            nextRoundButton: false
+        })
     }
 
     checkState = () => {
@@ -64,15 +67,16 @@ class Practice extends Component {
                     </div>
 
                     <div>
-                        <Card card={ this.state.cards[this.state.currentCardIndex] } removeCard={ this.removeCard } />
+                        {
+                            this.state.nextRoundButton ?
+                            <button onClick={ this.nextRound }>Next Round</button> :
+                            <Card 
+                                card={ this.state.cards[this.state.currentCardIndex] } 
+                                removeCard={ this.removeCard } 
+                                nextCard={ this.nextCard}
+                            />
+                        }
                     </div>
-                    
-                    <button onClick={ this.nextCard }>Next Card</button>
-                    <button onClick={ this.removeCard }>Remove Card</button>
-
-                    <br></br><br></br>
-
-                    { this.state.nextRoundButton ? <button onClick={ this.nextRound }>Next Round</button> : <div>X</div>}
 
                 </div>
             </div>
