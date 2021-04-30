@@ -41,7 +41,7 @@ class Home extends Component {
                     exercise={ newExercise } 
                     beginExercise={ this.beginExercise } 
                     displayOptions={ this.displayOptions }
-            /> })
+                /> })
     }
 
     displayOptions = () => {
