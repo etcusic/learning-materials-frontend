@@ -1,47 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Card extends Component {
-
-    constructor(){
-        super()
-        this.state = {
-            side: "side_a"
-        }
-    }
-
-    flipCard = () => {
-        this.state.side === "side_a" ? this.setState({ side: "side_b" }) : this.setState({ side: "side_a" })
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>Card component: </h2>
-
-                <div>
-                    <button onClick={ this.flipCard }>Flip Card</button>
-                </div>
-
-                <br></br>
-
-                <div className="practice-card">
-                    <div className="practice-card-text">
-                        { this.props.card[this.state.side] }
-                    </div>
-                </div>
-
-                <br></br>
-
-                <div>
-                    <button onClick={ this.props.nextCard }>Next Card</button>
-                    <button onClick={ this.props.removeCard }>Remove Card</button>
-                </div>
-
-                    
+const Card = ({ side }) => {
+    return (
+        <div className="practice-card">
+            <div className="practice-card-text">
+                { side }
             </div>
-        )
-    }
-
+        </div>
+    );
 }
   
 export default Card

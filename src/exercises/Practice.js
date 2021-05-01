@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
-import Card from '../components/Card'
+import PracticeCard from '../components/PracticeCard'
 
 class Practice extends Component {
 
@@ -80,7 +80,7 @@ class Practice extends Component {
                         {
                             this.state.nextRoundButton ?
                             <button onClick={ this.nextRound }>Next Round</button> :
-                            <Card 
+                            <CardContainer 
                                 card={ this.state.cards[this.state.currentCardIndex] } 
                                 removeCard={ this.removeCard } 
                                 nextCard={ this.nextCard}
