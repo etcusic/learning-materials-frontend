@@ -7,9 +7,10 @@ class ExerciseContainer extends Component {
     render() {
         return (
             <div>
+                {/* NEED TO ADD CASE STATEMENT TO HANDLE DIFFERENT EXERCISE DISPLAYS */}
                 <h1>Exercise Container</h1>
-                {/* <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> */}
-                <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } />
+                <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } />
+                {/* <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> */}
             </div>
         )
     }

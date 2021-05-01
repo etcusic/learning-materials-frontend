@@ -17,21 +17,27 @@ class Card extends Component {
         return (
             <div>
                 <h2>Card component: </h2>
+
+                <div>
+                    <button onClick={ this.flipCard }>Flip Card</button>
+                </div>
+
+                <br></br>
+
                 <div className="practice-card">
-                    <div>
-                        <button onClick={ this.flipCard }>Flip Card</button>
+                    <div className="practice-card-text">
+                        { this.props.card[this.state.side] }
                     </div>
+                </div>
 
-                    <br></br>
+                <br></br>
 
-                    { this.props.card[this.state.side] }
-
-                    <br></br><br></br>
-
+                <div>
                     <button onClick={ this.props.nextCard }>Next Card</button>
                     <button onClick={ this.props.removeCard }>Remove Card</button>
-
                 </div>
+
+                    
             </div>
         )
     }
