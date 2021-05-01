@@ -25,10 +25,11 @@ class MultipleChoice extends Component {
         return (
             <div>
                 <button onClick={ this.checkState }>Check State</button>
-                <h2>Multiple Choice Exercise</h2>
                 
+                <h2>Multiple Choice Exercise</h2>
 
                 <br></br><br></br>
+
                 <button onClick={ this.props.exitExercise }>Exit Exercise</button>
 
             </div>

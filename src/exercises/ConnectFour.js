@@ -25,12 +25,14 @@ class ConnectFour extends Component {
         return (
             <div>
                 <button onClick={ this.checkState }>Check State</button>
+
                 <h2>Connect Four Exercise</h2>
                 
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img>
 
                 <br></br><br></br>
+  
                 <button onClick={ this.props.exitExercise }>Exit Exercise</button>
-
             </div>
         )
     }

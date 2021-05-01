@@ -28,7 +28,7 @@ class SpeedGame extends Component {
                 
                 <h2>Speed Game Exercise</h2>
                 
-                <img src=".../public/under_construction.png" alt="exercise under construction"></img>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img>
 
                 <br></br><br></br>
 
