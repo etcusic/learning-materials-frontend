@@ -80,7 +80,7 @@ class Practice extends Component {
                         {
                             this.state.nextRoundButton ?
                             <button onClick={ this.nextRound }>Next Round</button> :
-                            <CardContainer 
+                            <PracticeCard 
                                 card={ this.state.cards[this.state.currentCardIndex] } 
                                 removeCard={ this.removeCard } 
                                 nextCard={ this.nextCard}
