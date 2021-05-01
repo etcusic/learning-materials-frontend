@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
+import Placeholder from '../components/Placeholder';
 import Practice from '../exercises/Practice';
 import MultipleChoice from '../exercises/MultipleChoice';
 
 class ExerciseContainer extends Component {
 
+    constructor(){
+        super()
+        this.state = {
+            view: <Placeholder />
+        }
+    }
+
+    componentDidMount(){
+        this.setActivity(this.props.exercise.activity)
+    }
+
+    setActivity = activity => {
+        switch(activity){
+            case 'Practice':
+                console.log(activity)
+                this.setState({ view: <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                break;
+            case 'Multiple Choice':
+                this.setState({ view: <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                break;
+            default:
+                this.setState({ view: <Placeholder /> })
+        }
+    }
+
     render() {
         return (
             <div>
-                {/* NEED TO ADD CASE STATEMENT TO HANDLE DIFFERENT EXERCISE DISPLAYS */}
                 <h1>Exercise Container</h1>
-                <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } />
-                {/* <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> */}
+                { this.state.view }
             </div>
         )
     }
