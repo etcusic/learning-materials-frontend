@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
-import BeginMultipleChoiceButton from '../components/BeginMultipleChoiceButton'
-import MultipleChoiceDisplay from '../components/MultipleChoiceDisplay'
 
 class MultipleChoice extends Component {
 
@@ -11,10 +9,9 @@ class MultipleChoice extends Component {
             cards: [],
             round: 0,
             correctAnswers: 0,
-            currentCard: {side_a: "Side A", side_b: "Side B"},
+            currentCard: {side_a: "Side A", side_b: "Side B"}, 
             answerOptions: ["A", "B", "C", "D"],
-            answer: "",
-            view: <BeginMultipleChoiceButton beginExercise={ this.beginExercise } />
+            answer: ""
         }
     }
 
@@ -27,23 +24,10 @@ class MultipleChoice extends Component {
         })
     }
 
-    beginExercise = () => {
-        this.setState({ 
-            view: <MultipleChoiceDisplay
-                currentCard={ this.state.currentCard }
-                answer={ this.state.answer }
-                answerOptions={ this.state.answerOptions }
-                setAnswer={ this.setAnswer }
-                submitAnswer={ this.submitAnswer }
-            />
-        })
-    }
-
     shuffleMultipleChoice = () => {
         let shuffledCards = shuffleCards([...this.state.cards.filter((card, i) => i !== this.state.round)])
-        console.log(this.state.cards)
-        console.log(shuffledCards)
-        let choices = [this.state.cards[this.state.round]]
+        let choices = [this.state.cards[this.state.round], ...shuffledCards(0, 3)]
+        return shuffleCards(choices)
     }
 
     setRound = () => {
