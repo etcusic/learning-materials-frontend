@@ -6,7 +6,8 @@ class MultipleChoice extends Component {
     constructor(){
         super()
         this.state = {
-
+            currentCard: {side_a: "Side A", side_b: "Side B"},
+            answerOptions: ["A", "B", "C", "D"]
         }
     }
 
@@ -22,11 +23,17 @@ class MultipleChoice extends Component {
     }
 
     render() {
-        return (
+        return (    
             <div>
                 <button onClick={ this.checkState }>Check State</button>
                 
                 <h2>Multiple Choice Exercise</h2>
+
+                <h3>"{ this.state.currentCard.side_a }"</h3>
+
+                <ul>
+                    { this.state.answerOptions.map(option => <li>{ option }</li>)}
+                </ul>
 
                 <br></br><br></br>
 
