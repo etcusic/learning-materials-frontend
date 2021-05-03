@@ -7,7 +7,8 @@ class MultipleChoice extends Component {
         super()
         this.state = {
             currentCard: {side_a: "Side A", side_b: "Side B"},
-            answerOptions: ["A", "B", "C", "D"]
+            answerOptions: ["A", "B", "C", "D"],
+            answer: ""
         }
     }
 
@@ -16,6 +17,13 @@ class MultipleChoice extends Component {
         this.setState({ 
             cards: cards
         })
+    }
+
+    onValueChange = (event) => {
+        console.log(event.target.value)
+        this.setState({
+            answer: event.target.value
+        });
     }
 
     checkState = () => {
@@ -29,10 +37,28 @@ class MultipleChoice extends Component {
                 
                 <h2>Multiple Choice Exercise</h2>
 
-                <h3>"{ this.state.currentCard.side_a }"</h3>
+                <h3>Term: "{ this.state.currentCard.side_a }"</h3>
+
+                <h3>Answer: "{ this.state.answer }"</h3>
 
                 <ul>
-                    { this.state.answerOptions.map(option => <li>{ option }</li>)}
+                    { this.state.answerOptions.map((option, i) => {
+                        return (
+                            <div>
+                                <label>
+                                <input
+                                    key={`option-${i + 1}`} 
+                                    type="radio"
+                                    value={ option }
+                                    checked={ this.state.selectedOption === { option } }
+                                    onChange={ this.onValueChange }
+                                />
+                                { option }
+                                </label>
+                            </div>
+                            
+                        )
+                    })}
                 </ul>
 
                 <br></br><br></br>
