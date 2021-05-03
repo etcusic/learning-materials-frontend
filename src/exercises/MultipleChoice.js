@@ -26,28 +26,44 @@ class MultipleChoice extends Component {
         })
     }
 
-    shuffleMultipleChoice = () => {
-        let shuffledCards = shuffleCards([...this.state.cards.filter((card, i) => (i + 1) !== this.state.round)])
-        let choices = [this.state.cards[this.state.round + 1], ...shuffledCards(0, 3)]
-        return shuffleCards(choices)
-    }
-
-    setRound = () => {
-
-    }
-
     setAnswer = (event) => {
         this.setState({
             answer: event.target.value
         });
     }
 
-    checkAnswer = () => {
-
+    submitAnswer = () => {
+        if (this.state.answer === ""){
+            console.log("invalid response")
+        } else {
+            let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
+            this.setNextRound(point)
+        }
     }
 
-    submitAnswer = () => {
+    shuffleMultipleChoice = (nextRound) => {
+        let cards = [...this.state.cards].filter((card, i) => i !== (nextRound))
+        let shuffledCards = shuffleCards(cards)
+        console.log(shuffledCards)
+        let choices = [this.state.cards[nextRound], ...shuffledCards.slice(0, 3)]
+        console.log(choices)
+        return choices
+    }
 
+    setNextRound = (point) => {
+        const nextRound = this.state.round + 1
+        const addPoint = this.state.correctAnswers + point
+        const options = this.shuffleMultipleChoice(nextRound)
+        const shuffledOptions = shuffleCards([...options]).map(card => card.side_b)
+        console.log(options)
+        console.log(shuffledOptions)
+        this.setState({
+            round: nextRound,
+            correctAnswers: addPoint,
+            currentCard: options[0], 
+            answerOptions: shuffledOptions,
+            answer: ""
+        })
     }
 
     checkState = () => {
@@ -67,7 +83,6 @@ class MultipleChoice extends Component {
                 <h3>Term: "{ this.state.currentCard.side_a }"</h3>
 
                 <h3>Answer: "{ this.state.answer }"</h3>
-
 
                 <ul>
                     { this.state.answerOptions.map((option, i) => {
