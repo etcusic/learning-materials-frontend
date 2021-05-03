@@ -44,7 +44,7 @@ class MultipleChoice extends Component {
                 questions: this.props.cards.length, 
                 correctAnswers: (this.state.correctAnswers + point)
             }
-            const newView = <MultipleChoiceResults result={ result } />
+            const newView = <MultipleChoiceResults result={ result } exitView={ this.props.exitExercise } />
             this.props.setNewView(newView)
         }
     }
