@@ -18,15 +18,17 @@ class MultipleChoice extends Component {
     componentDidMount(){
         let cards = shuffleCards(this.props.cards)
         let currentCard = cards[0]
+        let answerOptions = shuffleCards(cards.slice(0, 4)).map(card => card.side_b)
         this.setState({ 
             cards: cards,
-            currentCard: currentCard
+            currentCard: currentCard,
+            answerOptions: answerOptions
         })
     }
 
     shuffleMultipleChoice = () => {
-        let shuffledCards = shuffleCards([...this.state.cards.filter((card, i) => i !== this.state.round)])
-        let choices = [this.state.cards[this.state.round], ...shuffledCards(0, 3)]
+        let shuffledCards = shuffleCards([...this.state.cards.filter((card, i) => (i + 1) !== this.state.round)])
+        let choices = [this.state.cards[this.state.round + 1], ...shuffledCards(0, 3)]
         return shuffleCards(choices)
     }
 
@@ -62,7 +64,31 @@ class MultipleChoice extends Component {
 
                 <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
 
-                { this.state.view }
+                <h3>Term: "{ this.state.currentCard.side_a }"</h3>
+
+                <h3>Answer: "{ this.state.answer }"</h3>
+
+
+                <ul>
+                    { this.state.answerOptions.map((option, i) => {
+                        return (
+                            <div key={`option-${i + 1}`} >
+                                <label>
+                                <input
+                                    type="radio"
+                                    value={ option }
+                                    checked={ this.state.answer === { option } }
+                                    onChange={ this.setAnswer }
+                                />
+                                { option }
+                                </label>
+                            </div>
+
+                        )
+                    })}
+                </ul>
+
+                <button onClick={ this.submitAnswer }>Submit Answer</button>
 
                 <br></br><br></br><br></br>
 
