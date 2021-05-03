@@ -29,7 +29,13 @@ class MultipleChoice extends Component {
 
     beginExercise = () => {
         this.setState({ 
-            view: <MultipleChoiceDisplay />
+            view: <MultipleChoiceDisplay
+                currentCard={ this.state.currentCard }
+                answer={ this.state.answer }
+                answerOptions={ this.state.answerOptions }
+                setAnswer={ this.setAnswer }
+                submitAnswer={ this.submitAnswer }
+            />
         })
     }
 
@@ -70,35 +76,9 @@ class MultipleChoice extends Component {
                 
                 <h2>Multiple Choice Exercise</h2>
 
+                <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
+
                 { this.state.view }
-
-                {/* <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
-
-                <h3>Term: "{ this.state.currentCard.side_a }"</h3>
-
-                <h3>Answer: "{ this.state.answer }"</h3>
-
-                <ul>
-                    { this.state.answerOptions.map((option, i) => {
-                        return (
-                            <div>
-                                <label>
-                                <input
-                                    key={`option-${i + 1}`} 
-                                    type="radio"
-                                    value={ option }
-                                    checked={ this.state.answer === { option } }
-                                    onChange={ this.setAnswer }
-                                />
-                                { option }
-                                </label>
-                            </div>
-                            
-                        )
-                    })}
-                </ul>
-
-                <button onClick={ this.submitAnswer }>Submit Answer</button> */}
 
                 <br></br><br></br><br></br>
 
