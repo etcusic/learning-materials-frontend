@@ -25,7 +25,7 @@ class ExerciseContainer extends Component {
                 this.setState({ view: <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
                 break;
             case 'Multiple Choice':
-                this.setState({ view: <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                this.setState({ view: <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } setNewView={ this.setNewView } /> })
                 break;
             case 'Speed Game':
                 this.setState({ view: <SpeedGame cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
@@ -36,6 +36,10 @@ class ExerciseContainer extends Component {
             default:
                 this.setState({ view: <Placeholder /> })
         }
+    }
+
+    setNewView = component => {
+        this.setState({ view: component })
     }
 
     render() {

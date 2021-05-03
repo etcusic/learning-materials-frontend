@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import MultipleChoiceResults from '../components/MultipleChoiceResults.js'
 
 class MultipleChoice extends Component {
 
@@ -36,14 +37,15 @@ class MultipleChoice extends Component {
         let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
         if (this.state.answer === ""){
             console.log("invalid response")
-        } else if ((this.state.round + 1) === this.state.cards.length) {
-            console.log("round is over")
-            this.setState({
-                round: (this.state.round + 1),
-                correctAnswers: (this.state.correctAnswers + point)
-            })
-        } else {
+        } else if ((this.state.round + 1) < this.state.cards.length) {
             this.setNextRound(point)
+        } else {
+            const result = {
+                questions: this.props.cards.length, 
+                correctAnswers: (this.state.correctAnswers + point)
+            }
+            const newView = <MultipleChoiceResults result={ result } />
+            this.props.setNewView(newView)
         }
     }
 
@@ -78,6 +80,8 @@ class MultipleChoice extends Component {
                 <button onClick={ this.checkState }>Check State</button>
                 
                 <h2>Multiple Choice Exercise</h2>
+
+                <h3># of Questions: { this.props.cards.length }</h3>
 
                 <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
 
