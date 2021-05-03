@@ -33,10 +33,16 @@ class MultipleChoice extends Component {
     }
 
     submitAnswer = () => {
+        let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
         if (this.state.answer === ""){
             console.log("invalid response")
+        } else if ((this.state.round + 1) === this.state.cards.length) {
+            console.log("round is over")
+            this.setState({
+                round: (this.state.round + 1),
+                correctAnswers: (this.state.correctAnswers + point)
+            })
         } else {
-            let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
             this.setNextRound(point)
         }
     }
@@ -44,9 +50,7 @@ class MultipleChoice extends Component {
     shuffleMultipleChoice = (nextRound) => {
         let cards = [...this.state.cards].filter((card, i) => i !== (nextRound))
         let shuffledCards = shuffleCards(cards)
-        console.log(shuffledCards)
         let choices = [this.state.cards[nextRound], ...shuffledCards.slice(0, 3)]
-        console.log(choices)
         return choices
     }
 
@@ -55,8 +59,6 @@ class MultipleChoice extends Component {
         const addPoint = this.state.correctAnswers + point
         const options = this.shuffleMultipleChoice(nextRound)
         const shuffledOptions = shuffleCards([...options]).map(card => card.side_b)
-        console.log(options)
-        console.log(shuffledOptions)
         this.setState({
             round: nextRound,
             correctAnswers: addPoint,
@@ -68,7 +70,6 @@ class MultipleChoice extends Component {
 
     checkState = () => {
         console.log(this.state)
-        this.shuffleMultipleChoice()
     }
 
     render() {
