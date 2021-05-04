@@ -36,16 +36,12 @@ class MultipleChoice extends Component {
     submitAnswer = () => {
         let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
         if (this.state.answer === ""){
-            console.log("invalid response")
+            alert('Invalid response. Please select one of the options!')
         } else if ((this.state.round + 1) < this.state.cards.length) {
             this.setNextRound(point)
         } else {
-            const result = {
-                questions: this.props.cards.length, 
-                correctAnswers: (this.state.correctAnswers + point)
-            }
-            const newView = <MultipleChoiceResults result={ result } exitView={ this.props.exitExercise } />
-            this.props.setNewView(newView)
+            const totalPoints = this.state.correctAnswers + point
+            this.endMultipleChoiceRound(totalPoints)
         }
     }
 
@@ -68,6 +64,15 @@ class MultipleChoice extends Component {
             answerOptions: shuffledOptions,
             answer: ""
         })
+    }
+
+    endMultipleChoiceRound = (points) => {
+        const result = {
+            questions: this.props.cards.length, 
+            correctAnswers: points
+        }
+        const newView = <MultipleChoiceResults result={ result } exitView={ this.props.exitExercise } />
+        this.props.setNewView(newView)
     }
 
     checkState = () => {
