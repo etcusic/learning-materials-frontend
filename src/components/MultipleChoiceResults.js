@@ -1,9 +1,9 @@
 import React from 'react';
 
-const MultipleChoiceResults = ({ result, exitView }) => {
+const MultipleChoiceResults = ({ deckName, result, exitView }) => {
     return (
         <div>
-            <h2>Multiple Choice Results</h2>
+            <h2>Multiple Choice Results - { deckName }</h2>
 
             <h3>Score: { result.correctAnswers } / { result.questions }</h3>
 

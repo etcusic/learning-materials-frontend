@@ -71,7 +71,11 @@ class MultipleChoice extends Component {
             questions: this.props.cards.length, 
             correctAnswers: points
         }
-        const newView = <MultipleChoiceResults result={ result } exitView={ this.props.exitExercise } />
+        const newView = <MultipleChoiceResults 
+                            deckName={ this.props.deckName } 
+                            result={ result } 
+                            exitView={ this.props.exitExercise } 
+                        />
         this.props.setNewView(newView)
     }
 
