@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import MultipleChoiceCard from '../components/MultipleChoiceCard.js'
 import MultipleChoiceResults from '../components/MultipleChoiceResults.js'
 
 class MultipleChoice extends Component {

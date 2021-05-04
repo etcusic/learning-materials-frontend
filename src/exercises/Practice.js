@@ -48,7 +48,9 @@ class Practice extends Component {
     }
 
     nextRound = () => {
+        let cards = [...this.state.cards]
         this.setState({ 
+            cards: shuffleCards(cards),
             currentCardIndex: 0,
             nextRoundButton: false
         })
