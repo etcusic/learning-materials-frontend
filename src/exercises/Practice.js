@@ -62,7 +62,7 @@ class Practice extends Component {
         return (
             <div>
                 <button onClick={ this.checkState }>Check State</button>
-                <h2>Practice Exercise</h2>
+                <h2>Practice Exercise - { this.props.deckName } </h2>
                 <div>
                     <div>
                         <h3>Cards left: { this.state.cards.length }</h3>

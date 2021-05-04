@@ -18,23 +18,65 @@ class ExerciseContainer extends Component {
         this.setActivity(this.props.exercise.activity)
     }
 
+    setPractice = () => {
+        this.setState({ 
+            view: <Practice 
+                    deckName={ this.props.exercise.deck.name } 
+                    cards={ this.props.exercise.deck.cards } 
+                    exitExercise={ this.props.exitExercise } 
+            /> 
+        })
+    }
+
+    setMultipleChoice = () => {
+        this.setState({ 
+            view: <MultipleChoice 
+                    deckName={ this.props.exercise.deck.name } 
+                    cards={ this.props.exercise.deck.cards } 
+                    exitExercise={ this.props.exitExercise } 
+                    setNewView={ this.setNewView } 
+            /> 
+        })
+    }
+
+    setSpeedGame = () => {
+        this.setState({ 
+            view: <SpeedGame 
+                    deckName={ this.props.exercise.deck.name } 
+                    cards={ this.props.exercise.deck.cards } 
+                    exitExercise={ this.props.exitExercise } 
+            /> 
+        })
+    }
+
+    setConnectFour = () => {
+        this.setState({ 
+            view: <ConnectFour 
+                    deckName={ this.props.exercise.deck.name } 
+                    cards={ this.props.exercise.deck.cards } 
+                    exitExercise={ this.props.exitExercise } 
+            /> 
+        })
+    }
+
     setActivity = activity => {
         switch(activity){
             case 'Practice':
-                console.log(activity)
-                this.setState({ view: <Practice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                this.setPractice()
                 break;
             case 'Multiple Choice':
-                this.setState({ view: <MultipleChoice cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } setNewView={ this.setNewView } /> })
+                this.setMultipleChoice()
                 break;
             case 'Speed Game':
-                this.setState({ view: <SpeedGame cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                this.setSpeedGame()
                 break;
             case 'Connect Four':
-                this.setState({ view: <ConnectFour cards={ this.props.exercise.deck.cards } exitExercise={ this.props.exitExercise } /> })
+                this.setConnectFour()
                 break;
             default:
-                this.setState({ view: <Placeholder /> })
+                this.setState({ 
+                    view: <Placeholder /> 
+                })
         }
     }
 

@@ -11,7 +11,7 @@ class MultipleChoice extends Component {
             round: 0,
             correctAnswers: 0,
             currentCard: {side_a: "Side A", side_b: "Side B"}, 
-            answerOptions: ["A", "B", "C", "D"],
+            answerOptions: ["", "", "", ""],
             answer: ""
         }
     }
@@ -84,7 +84,7 @@ class MultipleChoice extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
                 
-                <h2>Multiple Choice Exercise</h2>
+                <h2>Multiple Choice Exercise - { this.props.deckName } </h2>
 
                 <h3># of Questions: { this.props.cards.length }</h3>
 
