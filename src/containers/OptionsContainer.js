@@ -53,7 +53,7 @@ class OptionsContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Select your exercise.</h1>
+                <h1>Select an exercise.</h1>
                 
                 <h2>
                     <label>Level: </label>
@@ -76,14 +76,14 @@ class OptionsContainer extends Component {
                     { this.displayActivities() }
                 </h2>
 
-                <h2>
+                <h3>
                     { this.state.deckId === 0 || 
                         this.state.level === 0 || 
                         this.state.activity === "invalid" ? 
                         "All fields must be valid to continue" : 
                         <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
                     }
-                </h2>
+                </h3>
                 
             </div>
         )
