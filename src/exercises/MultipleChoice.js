@@ -84,6 +84,12 @@ class MultipleChoice extends Component {
         console.log(this.state)
     }
 
+    selectCard = (option) => {
+        this.setState({
+            answer: option
+        });
+    }
+
     render() {
         return (    
             <div>
@@ -97,25 +103,19 @@ class MultipleChoice extends Component {
 
                 <h3>Term: "{ this.state.currentCard.side_a }"</h3>
 
-                <h3>Answer: "{ this.state.answer }"</h3>
-
                 <ul>
-                    { this.state.answerOptions.map((option, i) => {
-                        return (
-                            <div key={`option-${i + 1}`} >
-                                <label>
-                                <input
-                                    type="radio"
-                                    value={ option }
-                                    checked={ this.state.answer === { option } }
-                                    onChange={ this.setAnswer }
-                                />
-                                { option }
-                                </label>
-                            </div>
-
+                { 
+                    this.state.answerOptions.map((option, i) => {
+                        return ( 
+                            <MultipleChoiceCard 
+                                index={ i }
+                                option={ option } 
+                                answer={ this.state.answer }
+                                color={ option === this.state.answer ? "#ffc40c" : "cadetblue" }
+                                selectCard={ this.selectCard }
+                            />
                         )
-                    })}
+                })}
                 </ul>
 
                 <button onClick={ this.submitAnswer }>Submit Answer</button>

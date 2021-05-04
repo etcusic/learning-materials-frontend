@@ -23,6 +23,7 @@ class Practice extends Component {
 
     nextCard = () => {
         let index = this.state.currentCardIndex + 1
+        // check if last card in deck
         index < this.state.cards.length ? 
         this.setState({ currentCardIndex: index }) :
         this.setState({ 
