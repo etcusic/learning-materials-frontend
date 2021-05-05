@@ -101,7 +101,7 @@ class MultipleChoice extends Component {
 
                 <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
 
-                <h3>Term: "{ this.state.currentCard.side_a }"</h3>
+                <h1>- { this.state.currentCard.side_a } -</h1>
 
                 <ul>
                 { 

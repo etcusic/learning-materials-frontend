@@ -68,7 +68,7 @@ class Practice extends Component {
                 <h2>Practice Exercise - { this.props.deckName } </h2>
                 <div>
                     <div>
-                        <h3>Cards left: { this.state.cards.length }</h3>
+                        <h3>Cards remaining: { this.state.cards.length }</h3>
                     </div>
 
                     <div>
