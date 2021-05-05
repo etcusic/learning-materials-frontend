@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
-import SpeedGameCard from '../components/SpeedGameCard'
+import SpeedGameBoard from '../components/SpeedGameBoard'
 
 class SpeedGame extends Component {
 
@@ -10,8 +10,8 @@ class SpeedGame extends Component {
             cards: [],
             round: 0,
             score: 0,
-            currentSet: [{side_a: "Side A", side_b: "Side B"}],
-            currentCard: {side_a: "Side A", side_b: "Side B"}
+            timer: 11,
+            currentSet: [{side_a: "Side A", side_b: "Side B"}]
         }
     }
 
@@ -37,13 +37,32 @@ class SpeedGame extends Component {
 
                 <h3>Total Rounds: { this.props.cards.length }</h3>
 
-                <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
+                <h3>Score: { this.state.score }</h3>
+
+                <h3>Timer: { this.state.timer }</h3>
 
                 {/* TIMER GOES HERE */}
 
-                <h1>- { this.state.currentSet[this.state.round]["side_a"] } -</h1>
+                <h1>- { this.state.currentSet[0]["side_a"] } -</h1>
 
-                <h2>Cards go here</h2>
+                <SpeedGameBoard 
+                    cards={this.state.currentSet } 
+
+                />
+
+                {/* <table>
+                    <tr>
+                        { this.state.currentSet.map(card => {
+                            return (
+                                <SpeedGameCard 
+                                    term={ card["side_b"] }
+                                />
+                            )
+                        })}
+                    </tr>
+
+                </table> */}
+                
                 
                 {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img> */}
 
