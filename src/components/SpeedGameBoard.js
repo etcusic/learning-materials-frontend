@@ -3,9 +3,9 @@ import { shuffleCards } from '../helperFunctions/shuffleCards';
 import SpeedGameCard from './SpeedGameCard'
 
 
-const SpeedGameBoard = ({ cards }) => {
+const SpeedGameBoard = ({ cards, selectCard }) => {
     
-    let shuffledCards = shuffleCards(cards)
+    let shuffledCards = shuffleCards([...cards])
 
     return (
         <table>
@@ -14,6 +14,7 @@ const SpeedGameBoard = ({ cards }) => {
                 return (
                     <SpeedGameCard 
                         term={ card["side_b"] }
+                        selectCard={ selectCard }
                     />
                 )
             })}

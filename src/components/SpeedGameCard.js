@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SpeedGameCard = ({ term }) => {
+const SpeedGameCard = ({ term, selectCard }) => {
     return (
-        <td className="speed-card">
+        <td className="speed-card" onClick={() => selectCard(term)}>
             <div className="speed-card-text">
                 { term }
             </div>

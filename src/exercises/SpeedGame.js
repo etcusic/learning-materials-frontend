@@ -24,6 +24,23 @@ class SpeedGame extends Component {
         })
     }
 
+    initializeGame = () => {
+        
+    }
+
+    selectCard = (answer) => {
+        let score = this.state.score
+        answer === this.state.currentSet[0]["side_b"] ? score += this.state.timer : score -= this.state.timer
+        console.log(answer)
+        console.log(this.state.currentSet[0]["side_b"])
+        console.log(this.state.currentSet[0]["side_a"])
+        this.setRound(score)
+    }
+
+    setRound = (score) => {
+        console.log(score)
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -41,30 +58,12 @@ class SpeedGame extends Component {
 
                 <h3>Timer: { this.state.timer }</h3>
 
-                {/* TIMER GOES HERE */}
-
                 <h1>- { this.state.currentSet[0]["side_a"] } -</h1>
 
                 <SpeedGameBoard 
                     cards={this.state.currentSet } 
-
+                    selectCard={ this.selectCard }
                 />
-
-                {/* <table>
-                    <tr>
-                        { this.state.currentSet.map(card => {
-                            return (
-                                <SpeedGameCard 
-                                    term={ card["side_b"] }
-                                />
-                            )
-                        })}
-                    </tr>
-
-                </table> */}
-                
-                
-                {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img> */}
 
                 <br></br><br></br>
 
