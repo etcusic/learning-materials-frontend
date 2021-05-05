@@ -26,3 +26,18 @@ code {
   font-size: 30px;
   font-weight: bold;
 }
+
+.speed-card {
+  margin: auto;
+  width: 20%;
+  padding: 10px;
+  border: 3px solid;
+  background-color: cadetblue;
+}
+
+.speed-card-text {
+  padding: 10px;
+  color: whitesmoke;
+  font-size: 30px;
+  font-weight: bold;
+}
