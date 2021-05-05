@@ -4,6 +4,7 @@ import Practice from '../exercises/Practice';
 import MultipleChoice from '../exercises/MultipleChoice';
 import SpeedGame from '../exercises/SpeedGame';
 import ConnectFour from '../exercises/ConnectFour';
+// import { shuffleCards } from '../helperFunctions/shuffleCards'
 
 class ExerciseContainer extends Component {
 

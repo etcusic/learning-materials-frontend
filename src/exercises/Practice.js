@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
 import PracticeCard from '../components/PracticeCard'
+import EndOfPracticeRound from '../components/EndOfPracticeRound'
 
 class Practice extends Component {
 
@@ -15,10 +16,7 @@ class Practice extends Component {
     }
 
     componentDidMount(){
-        let cards = shuffleCards(this.props.cards)
-        this.setState({ 
-            cards: cards
-        })
+        this.resetDeck()
     }
 
     nextCard = () => {
@@ -57,6 +55,16 @@ class Practice extends Component {
         })
     }
 
+    resetDeck = () => {
+        let cards = shuffleCards([...this.props.cards])
+        this.setState({ 
+            cards: cards,
+            completedCards: [],
+            currentCardIndex: 0,
+            nextRoundButton: false
+        })
+    }
+
     checkState = () => {
         console.log(this.state)
     }
@@ -81,8 +89,13 @@ class Practice extends Component {
 
                     <div>
                         {
-                            this.state.nextRoundButton ?
-                            <button onClick={ this.nextRound }>Next Round</button> :
+                            this.state.nextRoundButton 
+                            ?
+                            <EndOfPracticeRound 
+                                nextRound={ this.nextRound }
+                                resetDeck={ this.resetDeck }
+                            />
+                            :
                             <PracticeCard 
                                 card={ this.state.cards[this.state.currentCardIndex] } 
                                 removeCard={ this.removeCard } 
@@ -92,6 +105,7 @@ class Practice extends Component {
                     </div>
 
                     <br></br><br></br>
+                    
                     <button onClick={ this.props.exitExercise }>Exit Exercise</button>
 
                 </div>

@@ -6,7 +6,11 @@ class SpeedGame extends Component {
     constructor(){
         super()
         this.state = {
-
+            cards: [],
+            round: 0,
+            correctAnswers: 0,
+            currentSet: [],
+            currentCard: {side_a: "Side A", side_b: "Side B"}
         }
     }
 
