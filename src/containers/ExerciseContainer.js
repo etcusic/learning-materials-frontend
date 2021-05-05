@@ -4,7 +4,7 @@ import Practice from '../exercises/Practice';
 import MultipleChoice from '../exercises/MultipleChoice';
 import SpeedGame from '../exercises/SpeedGame';
 import ConnectFour from '../exercises/ConnectFour';
-// import { shuffleCards } from '../helperFunctions/shuffleCards'
+import { shuffleCards } from '../helperFunctions/shuffleCards';
 
 class ExerciseContainer extends Component {
 
@@ -41,10 +41,11 @@ class ExerciseContainer extends Component {
     }
 
     setSpeedGame = () => {
+        let cards = shuffleCards(this.props.exercise.deck.cards)
         this.setState({ 
             view: <SpeedGame 
                     deckName={ this.props.exercise.deck.name } 
-                    cards={ this.props.exercise.deck.cards } 
+                    cards={ cards } 
                     exitExercise={ this.props.exitExercise } 
             /> 
         })

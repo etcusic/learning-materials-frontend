@@ -7,7 +7,6 @@ class SpeedGame extends Component {
     constructor(){
         super()
         this.state = {
-            cards: [],
             round: 0,
             score: 0,
             timer: 11,
@@ -16,12 +15,7 @@ class SpeedGame extends Component {
     }
 
     componentDidMount(){
-        let cards = shuffleCards(this.props.cards)
-        let currentSet = shuffleCards([...cards.slice(0, 4)])
-        this.setState({ 
-            cards: cards,
-            currentSet: currentSet
-        })
+        this.setRound(0, 0)
     }
 
     initializeGame = () => {
@@ -31,14 +25,19 @@ class SpeedGame extends Component {
     selectCard = (answer) => {
         let score = this.state.score
         answer === this.state.currentSet[0]["side_b"] ? score += this.state.timer : score -= this.state.timer
-        console.log(answer)
-        console.log(this.state.currentSet[0]["side_b"])
-        console.log(this.state.currentSet[0]["side_a"])
-        this.setRound(score)
+        let nextRound = this.state.round + 1
+        this.setRound(score, nextRound)
     }
 
-    setRound = (score) => {
-        console.log(score)
+    setRound = (score, round) => {
+        let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
+        let currentSet = [this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)]
+        this.setState({
+            round: round,
+            score: score,
+            timer: 11,
+            currentSet: currentSet
+        })
     }
 
     checkState = () => {
