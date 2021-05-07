@@ -56,7 +56,6 @@ class SpeedGame extends Component {
         } else {
             let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
             let currentSet = shuffleCards([this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)])
-            // let shuffledSet = shuffleCards(currentSet)
             console.log(`currentSet => ${currentSet.map(card => card.side_a)}`)
             console.log(`currentCard => ${this.props.cards[round].side_a}`)
             this.setState({
