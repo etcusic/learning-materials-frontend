@@ -1,8 +1,3 @@
-export const sleepOneSecond = (time) => {
-    console.log(time)
+export const sleepOneSecond = () => {
     return new Promise(resolve => setTimeout(resolve, 1000));
 } 
-
-// function newPromise (myFunction) {
-//     return 
-// }

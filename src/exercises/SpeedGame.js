@@ -21,7 +21,6 @@ class SpeedGame extends Component {
 
     initializeGame = () => {
         this.setRound(0, 0)
-        // check to see if sleeper is working
         this.timerMinusOne()
     }
 
@@ -48,11 +47,12 @@ class SpeedGame extends Component {
     setRound = (score, round) => {
         let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
         let currentSet = [this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)]
+        let shuffledSet = shuffleCards(currentSet)
         this.setState({
             round: round,
             score: score,
             timer: 11,
-            currentSet: currentSet
+            currentSet: shuffledSet
         })
     }
 
