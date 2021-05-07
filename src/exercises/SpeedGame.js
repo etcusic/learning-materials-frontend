@@ -69,8 +69,13 @@ class SpeedGame extends Component {
     }
 
     gameOver = () => {
-        console.log("Game Over")
-        this.setState({ inPlay: false })
+        // check to see if gameOver has already been called
+        if (this.state.inPlay){
+            console.log("Game Over")
+            this.setState({ inPlay: false })
+        } else {
+            console.log("No processes run")
+        }
     }
 
     checkState = () => {
