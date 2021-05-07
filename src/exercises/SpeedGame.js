@@ -11,7 +11,8 @@ class SpeedGame extends Component {
             round: 0,
             score: 0,
             timer: 11,
-            currentSet: [{side_a: "Side A", side_b: "Side B"}]
+            currentSet: [{side_a: "Side A", side_b: "Side B"}],
+            inPlay: true
         }
     }
 
@@ -26,14 +27,12 @@ class SpeedGame extends Component {
 
     timerMinusOne = () => {
         let time = this.state.timer - 1
-        if (time > 0){
+        if (time > 0 && this.state.inPlay){
             console.log(time)
             this.setState({ timer: time })
             sleepOneSecond()
             .then(this.timerMinusOne)
-        } else if ((this.state.round + 1) <= this.props.cards.length) {
-            console.log("time up!")
-            console.log(`round => ${this.state.round + 1} | cards => ${this.props.cards.length}`)
+        } else if ((this.state.round + 1) < this.props.cards.length) {
             let score = this.state.score - 10
             let round = this.state.round + 1
             this.setRound(score, round)
@@ -72,7 +71,7 @@ class SpeedGame extends Component {
 
     gameOver = () => {
         console.log("Game Over")
-        return "Game Over"
+        this.setState({ inPlay: false })
     }
 
     checkState = () => {
