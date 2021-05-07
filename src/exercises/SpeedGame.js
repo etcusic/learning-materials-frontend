@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import { sleepOneSecond } from '../helperFunctions/sleepOneSecond'
 import SpeedGameBoard from '../components/SpeedGameBoard'
 
 class SpeedGame extends Component {
@@ -15,10 +16,25 @@ class SpeedGame extends Component {
     }
 
     componentDidMount(){
-        this.setRound(0, 0)
+        this.initializeGame()
     }
 
     initializeGame = () => {
+        this.setRound(0, 0)
+        // check to see if sleeper is working
+        this.timerMinusOne()
+    }
+
+    timerMinusOne = () => {
+        let time = this.state.timer - 1
+        if (time > 0){
+            console.log(time)
+            this.setState({ timer: time })
+            sleepOneSecond()
+            .then(this.timerMinusOne)
+        } else {
+            console.log("finished!")
+        }
         
     }
 
@@ -51,7 +67,7 @@ class SpeedGame extends Component {
                 
                 <h2>Speed Game Exercise - { this.props.deckName }</h2>
 
-                <h3>Total Rounds: { this.props.cards.length }</h3>
+                <h3>Round: { this.state.round + 1 } / { this.props.cards.length }</h3>
 
                 <h3>Score: { this.state.score }</h3>
 
