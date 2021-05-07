@@ -31,29 +31,48 @@ class SpeedGame extends Component {
             this.setState({ timer: time })
             sleepOneSecond()
             .then(this.timerMinusOne)
+        } else if ((this.state.round + 1) <= this.props.cards.length) {
+            console.log("time up!")
+            console.log(`round => ${this.state.round + 1} | cards => ${this.props.cards.length}`)
+            let score = this.state.score - 10
+            let round = this.state.round + 1
+            this.setRound(score, round)
+            sleepOneSecond()
+            .then(this.timerMinusOne)
         } else {
-            console.log("finished!")
+            return this.gameOver()
         }
-        
     }
 
     selectCard = (answer) => {
         let score = this.state.score
-        answer === this.state.currentSet[0]["side_b"] ? score += this.state.timer : score -= this.state.timer
+        answer === this.props.cards[this.state.round]["side_b"] ? score += this.state.timer : score -= this.state.timer
         let nextRound = this.state.round + 1
         this.setRound(score, nextRound)
     }
 
     setRound = (score, round) => {
-        let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
-        let currentSet = [this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)]
-        let shuffledSet = shuffleCards(currentSet)
-        this.setState({
-            round: round,
-            score: score,
-            timer: 11,
-            currentSet: shuffledSet
-        })
+        if (round >= this.props.cards.length){
+            this.gameOver()
+        } else {
+            let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
+            let currentSet = shuffleCards([this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)])
+            // let shuffledSet = shuffleCards(currentSet)
+            console.log(`currentSet => ${currentSet.map(card => card.side_a)}`)
+            console.log(`currentCard => ${this.props.cards[round].side_a}`)
+            this.setState({
+                round: round,
+                score: score,
+                timer: 11,
+                currentSet: currentSet
+            })
+        }
+        
+    }
+
+    gameOver = () => {
+        console.log("Game Over")
+        return "Game Over"
     }
 
     checkState = () => {
@@ -73,7 +92,7 @@ class SpeedGame extends Component {
 
                 <h3>Timer: { this.state.timer }</h3>
 
-                <h1>- { this.state.currentSet[0]["side_a"] } -</h1>
+                <h1>- { this.props.cards[this.state.round]["side_a"] } -</h1>
 
                 <SpeedGameBoard 
                     cards={this.state.currentSet } 
