@@ -28,11 +28,11 @@ class SpeedGame extends Component {
     timerMinusOne = () => {
         let time = this.state.timer - 1
         if (time > 0 && this.state.inPlay){
-            console.log(time)
             this.setState({ timer: time })
             sleepOneSecond()
             .then(this.timerMinusOne)
         } else if ((this.state.round + 1) < this.props.cards.length) {
+            console.log(`round ${this.state.round + 1} === ${this.props.cards.length}`)
             let score = this.state.score - 10
             let round = this.state.round + 1
             this.setRound(score, round)
@@ -52,12 +52,10 @@ class SpeedGame extends Component {
 
     setRound = (score, round) => {
         if (round >= this.props.cards.length){
-            this.gameOver()
+            this.endGame(score)
         } else {
             let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
             let currentSet = shuffleCards([this.props.cards[round], ...shuffleCards(filteredCards).slice(0, 3)])
-            console.log(`currentSet => ${currentSet.map(card => card.side_a)}`)
-            console.log(`currentCard => ${this.props.cards[round].side_a}`)
             this.setState({
                 round: round,
                 score: score,
@@ -65,17 +63,22 @@ class SpeedGame extends Component {
                 currentSet: currentSet
             })
         }
-        
+    }
+
+    endGame = (score) => {
+        this.setState({
+            round: 0,
+            score: score,
+            timer: 11,
+            currentSet: [{side_a: "", side_b: ""}, {side_a: "", side_b: ""}, {side_a: "", side_b: ""}, {side_a: "", side_b: ""}],
+            inPlay: false
+        })
     }
 
     gameOver = () => {
-        // check to see if gameOver has already been called
-        if (this.state.inPlay){
-            console.log("Game Over")
-            this.setState({ inPlay: false })
-        } else {
-            console.log("No processes run")
-        }
+        // need to add a view that shows game score - maybe send a game log fetch request as well
+        console.log("Game Over")
+        this.props.exitExercise()
     }
 
     checkState = () => {

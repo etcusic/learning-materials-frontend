@@ -57,6 +57,7 @@ class ExerciseContainer extends Component {
                     deckName={ this.props.exercise.deck.name } 
                     cards={ this.props.exercise.deck.cards } 
                     exitExercise={ this.props.exitExercise } 
+                    changeView={ this.props.changeView }
             /> 
         })
     }

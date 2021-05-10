@@ -52,7 +52,7 @@ class Home extends Component {
     }
 
     beginExercise = (exercise) => {
-        this.setState({ view: <ExerciseContainer exercise={ exercise } exitExercise={ this.displayOptions } />})
+        this.setState({ view: <ExerciseContainer exercise={ exercise } exitExercise={ this.displayOptions } changeView={ this.changeView } />})
     }
 
     checkState = () => {
