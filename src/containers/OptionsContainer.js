@@ -37,12 +37,15 @@ class OptionsContainer extends Component {
         this.setState({ level: value })
     }
 
-    changeDeck = (event) => {
+    addDeck = (event) => {
         let value = parseInt(event.target.value)
-        console.log(value)
-        console.log(this.props.decks.find( deck => deck.id === value ))
-        // let decks = [...this.state.decks, this.props.decks.find( deck => deck.id === value )]
-        // this.setState({ decks: decks })
+        let decks = [...this.state.decks]
+        if (event.target.checked){
+            decks.push(this.props.decks.find( deck => deck.id === value ))
+        } else {
+            decks = decks.filter(deck => deck.id !== value)
+        }
+        this.setState({ decks: decks })
     }
 
     changeActivity = (event) => {
@@ -81,6 +84,7 @@ class OptionsContainer extends Component {
                                                     type="checkbox"
                                                     key={`deck-${i + 1}`} 
                                                     value={deck.id} 
+                                                    onChange={this.addDeck}
                                                 />
                                                 <label>
                                                     { deck.name } - { deck.cards.length }
@@ -98,7 +102,7 @@ class OptionsContainer extends Component {
                     </select> */}
                 
                 <h3>
-                    { this.state.deckId === 0 || 
+                    { this.state.decks.length === 0 || 
                         this.state.level === 0 || 
                         this.state.activity === "invalid" ? 
                         "All fields must be valid to continue" : 
