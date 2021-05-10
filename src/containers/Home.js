@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { initializeApp } from '../actions/initializeApp'
-import { createExerciseObject } from '../actions/createExerciseObject'
+import { createExerciseObject } from '../helperFunctions/createExerciseObject.js'
 import Placeholder from '../components/Placeholder.js'
 import Welcome from '../components/Welcome.js'
 import OptionsContainer from './OptionsContainer';
