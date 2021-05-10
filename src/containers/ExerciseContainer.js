@@ -16,46 +16,47 @@ class ExerciseContainer extends Component {
     }
 
     componentDidMount(){
-        this.setActivity(this.props.exercise.activity)
+        let activity = this.props.exercise.activity
+        let deckNames = this.props.exerce.decks.map(deck => deck.name).join(", ")
+        let cards = shuffleCards(this.props.exercise.deck.cards)
+        this.setActivity(activity, deckNames, cards)
     }
 
-    setPractice = () => {
+    setPractice = (deckNames, cards) => {
         this.setState({ 
             view: <Practice 
-                    deckName={ this.props.exercise.deck.name } 
-                    cards={ this.props.exercise.deck.cards } 
-                    exitExercise={ this.props.exitExercise } 
-            /> 
-        })
-    }
-
-    setMultipleChoice = () => {
-        this.setState({ 
-            view: <MultipleChoice 
-                    deckName={ this.props.exercise.deck.name } 
-                    cards={ this.props.exercise.deck.cards } 
-                    exitExercise={ this.props.exitExercise } 
-                    setNewView={ this.setNewView } 
-            /> 
-        })
-    }
-
-    setSpeedGame = () => {
-        let cards = shuffleCards(this.props.exercise.deck.cards)
-        this.setState({ 
-            view: <SpeedGame 
-                    deckName={ this.props.exercise.deck.name } 
+                    deckNames={ deckNames } 
                     cards={ cards } 
                     exitExercise={ this.props.exitExercise } 
             /> 
         })
     }
 
-    setBingo = () => {
-        let cards = shuffleCards(this.props.exercise.deck.cards)
+    setMultipleChoice = (deckNames, cards) => {
+        this.setState({ 
+            view: <MultipleChoice 
+                    deckNames={ deckNames } 
+                    cards={ cards } 
+                    exitExercise={ this.props.exitExercise } 
+                    setNewView={ this.setNewView } 
+            /> 
+        })
+    }
+
+    setSpeedGame = (deckNames, cards) => {
+        this.setState({ 
+            view: <SpeedGame 
+                    deckNames={ deckNames } 
+                    cards={ cards } 
+                    exitExercise={ this.props.exitExercise } 
+            /> 
+        })
+    }
+
+    setBingo = (deckNames, cards) => {
         this.setState({ 
             view: <Bingo 
-                    deckName={ this.props.exercise.deck.name } 
+                    deckNames={ deckNames } 
                     cards={ cards } 
                     exitExercise={ this.props.exitExercise } 
                     changeView={ this.props.changeView }
@@ -63,19 +64,19 @@ class ExerciseContainer extends Component {
         })
     }
 
-    setActivity = activity => {
+    setActivity = (activity, deckNames, cards) => {
         switch(activity){
             case 'Practice':
-                this.setPractice()
+                this.setPractice(deckNames, cards)
                 break;
             case 'Multiple Choice':
-                this.setMultipleChoice()
+                this.setMultipleChoice(deckNames, cards)
                 break;
             case 'Speed Game':
-                this.setSpeedGame()
+                this.setSpeedGame(deckNames, cards)
                 break;
             case 'Bingo':
-                this.setBingo()
+                this.setBingo(deckNames, cards)
                 break;
             default:
                 this.setState({ 

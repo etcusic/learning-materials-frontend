@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { initializeApp } from '../actions/initializeApp'
+import { createExerciseObject } from '../actions/createExerciseObject'
 import Placeholder from '../components/Placeholder.js'
 import Welcome from '../components/Welcome.js'
 import OptionsContainer from './OptionsContainer';
@@ -30,12 +31,9 @@ class Home extends Component {
     }
 
     setExercise = (exercise) => {
-        let deck = this.state.decks.find(deck => deck.id === exercise.deckId)
-        let newExercise = {
-            level: exercise.level,
-            activity: exercise.activity,
-            deck: deck
-        }
+        // BREAK EVERYTHING DOWN HERE WITH HELPER FUNCTIONS, THEN PASS ON MORE EASILY TO BEGIN EXERCISE BUTTON AND THEN EXERCISE CONTAINER  
+        let newExercise = createExerciseObject(exercise)
+        console.log(newExercise)
         this.setState({ 
             view: <BeginExerciseButton 
                     exercise={ newExercise } 
@@ -52,6 +50,8 @@ class Home extends Component {
     }
 
     beginExercise = (exercise) => {
+        // BREAK DOWN EXERCISE PROPS HERE AND PASS DOWN AS PROPS - cleaner
+        console.log(exercise)
         this.setState({ view: <ExerciseContainer exercise={ exercise } exitExercise={ this.displayOptions } changeView={ this.changeView } />})
     }
 
