@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
 
-class ConnectFour extends Component {
+class Bingo extends Component {
 
     constructor(){
         super()
@@ -26,7 +26,7 @@ class ConnectFour extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
 
-                <h2>Connect Four Exercise</h2>
+                <h2>Bingo Exercise</h2>
                 
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img>
 
@@ -39,4 +39,4 @@ class ConnectFour extends Component {
 
 }
   
-export default ConnectFour
+export default Bingo

@@ -3,7 +3,7 @@ import Placeholder from '../components/Placeholder';
 import Practice from '../exercises/Practice';
 import MultipleChoice from '../exercises/MultipleChoice';
 import SpeedGame from '../exercises/SpeedGame';
-import ConnectFour from '../exercises/ConnectFour';
+import Bingo from '../exercises/Bingo';
 import { shuffleCards } from '../helperFunctions/shuffleCards';
 
 class ExerciseContainer extends Component {
@@ -51,9 +51,9 @@ class ExerciseContainer extends Component {
         })
     }
 
-    setConnectFour = () => {
+    setBingo = () => {
         this.setState({ 
-            view: <ConnectFour 
+            view: <Bingo 
                     deckName={ this.props.exercise.deck.name } 
                     cards={ this.props.exercise.deck.cards } 
                     exitExercise={ this.props.exitExercise } 
@@ -73,8 +73,8 @@ class ExerciseContainer extends Component {
             case 'Speed Game':
                 this.setSpeedGame()
                 break;
-            case 'Connect Four':
-                this.setConnectFour()
+            case 'Bingo':
+                this.setBingo()
                 break;
             default:
                 this.setState({ 

@@ -22,7 +22,7 @@ class OptionsContainer extends Component {
     }
 
     displayActivities = () => {
-        const activities = ["Practice", "Multiple Choice", "Speed Game", "Connect Four"]
+        const activities = ["Practice", "Multiple Choice", "Speed Game", "Bingo"]
         return (
             <select onChange={ event => this.changeActivity(event) }>
                 <option key="activity-0" value="invalid">-- select activity --</option>
