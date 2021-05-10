@@ -7,7 +7,7 @@ const BeginExerciseButton = ({ exercise, beginExercise, displayOptions }) => {
             <h2>Level: { exercise.level }</h2>
             <h2>Deck(s): </h2>
             <div>
-                { exercise.decks.map(deck => deck.name).join(" || ") }
+                { exercise.deckNames.join(" || ") }
             </div>
             <h2>Activity: { exercise.activity }</h2>
             <button onClick={ () => beginExercise(exercise) }>Begin Exercise!</button>

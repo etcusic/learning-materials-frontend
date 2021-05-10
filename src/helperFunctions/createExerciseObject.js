@@ -15,6 +15,5 @@ function getDeckNames (decks) {
 function getCards (decks) {
     let cards = []
     decks.forEach(deck => deck.cards.forEach(card => cards.push(card)))
-    console.log(cards)
     return cards
 }

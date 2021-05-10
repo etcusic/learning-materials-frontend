@@ -33,7 +33,6 @@ class Home extends Component {
     setExercise = (exercise) => {
         // BREAK EVERYTHING DOWN HERE WITH HELPER FUNCTIONS, THEN PASS ON MORE EASILY TO BEGIN EXERCISE BUTTON AND THEN EXERCISE CONTAINER  
         let newExercise = createExerciseObject(exercise)
-        console.log(newExercise)
         this.setState({ 
             view: <BeginExerciseButton 
                     exercise={ newExercise } 
@@ -43,16 +42,24 @@ class Home extends Component {
     }
 
     displayOptions = () => {
-        this.setState({ view: <OptionsContainer 
-                                decks={ this.state.decks } 
-                                setExercise={ this.setExercise } 
-                        />})
+        this.setState({ 
+            view: <OptionsContainer 
+                    decks={ this.state.decks } 
+                    setExercise={ this.setExercise } 
+            />
+        })
     }
 
     beginExercise = (exercise) => {
         // BREAK DOWN EXERCISE PROPS HERE AND PASS DOWN AS PROPS - cleaner
         console.log(exercise)
-        this.setState({ view: <ExerciseContainer exercise={ exercise } exitExercise={ this.displayOptions } changeView={ this.changeView } />})
+        this.setState({ 
+            view: <ExerciseContainer 
+                    exercise={ exercise } 
+                    exitExercise={ this.displayOptions } 
+                    changeView={ this.changeView } 
+            />
+        })
     }
 
     checkState = () => {
