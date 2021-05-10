@@ -6,12 +6,13 @@ class OptionsContainer extends Component {
         super()
         this.state = { 
             level: 0, 
-            deckId: 0,
+            decks: [],
             activity: "invalid"
         }
     }
 
     displayLevels = () => {
+        // will need to add sets with different levels
         const levels = [1]
         return (
             <select onChange={ event => this.changeLevel(event) }>
@@ -38,7 +39,10 @@ class OptionsContainer extends Component {
 
     changeDeck = (event) => {
         let value = parseInt(event.target.value)
-        this.setState({ deckId: value })
+        console.log(value)
+        console.log(this.props.decks.find( deck => deck.id === value ))
+        // let decks = [...this.state.decks, this.props.decks.find( deck => deck.id === value )]
+        // this.setState({ decks: decks })
     }
 
     changeActivity = (event) => {
@@ -61,21 +65,38 @@ class OptionsContainer extends Component {
                 </h2>
                 
                 <h2>
-                    <label>Deck: </label>
-                    <select onChange={ event => this.changeDeck(event) }>
+                    <label>Activity: </label>
+                    { this.displayActivities() }
+                </h2>
+
+                <h2>
+                    <label>Deck{`(s):`} </label>
+                </h2>
+                    { this.props.decks
+                                    .filter(deck => deck.level === this.state.level)
+                                    .map((deck, i) => {
+                                        return (
+                                            <div>
+                                                <input 
+                                                    type="checkbox"
+                                                    key={`deck-${i + 1}`} 
+                                                    value={deck.id} 
+                                                />
+                                                <label>
+                                                    { deck.name } - { deck.cards.length }
+                                                </label>
+                                            </div>
+                                        )
+                                    }) 
+                    }
+                    {/* <select onChange={ event => this.changeDeck(event) }>
                         <option key="deck-0" value="0">-- select deck --</option>
                         { this.props.decks
                                     .filter(deck => deck.level === this.state.level)
                                     .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
                         }
-                    </select>
-                </h2>
+                    </select> */}
                 
-                <h2>
-                    <label>Activity: </label>
-                    { this.displayActivities() }
-                </h2>
-
                 <h3>
                     { this.state.deckId === 0 || 
                         this.state.level === 0 || 
