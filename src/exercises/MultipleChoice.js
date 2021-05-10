@@ -95,7 +95,10 @@ class MultipleChoice extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
                 
-                <h2>Multiple Choice Exercise - { this.props.deckName } </h2>
+                <h2>Multiple Choice Exercise:</h2>
+                <div>
+                    ( { this.props.deckNames.join(", ")} )
+                </div>
 
                 <h3># of Questions: { this.props.cards.length }</h3>
 

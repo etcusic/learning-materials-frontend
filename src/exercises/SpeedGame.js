@@ -31,7 +31,7 @@ class SpeedGame extends Component {
             this.setState({ timer: time })
             sleepOneSecond()
             .then(this.timerMinusOne)
-        } else if ((this.state.round + 1) < this.props.cards.length) {
+        } else if ((this.state.round + 1) < this.props.cards.length && this.state.inPlay) {
             console.log(`round ${this.state.round + 1} === ${this.props.cards.length}`)
             let score = this.state.score - 10
             let round = this.state.round + 1
@@ -52,6 +52,7 @@ class SpeedGame extends Component {
 
     setRound = (score, round) => {
         if (round >= this.props.cards.length){
+            console.log("End Game")
             this.endGame(score)
         } else {
             let filteredCards = [...this.props.cards.filter((card, i) => i !== round)]
@@ -90,7 +91,10 @@ class SpeedGame extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
                 
-                <h2>Speed Game Exercise - { this.props.deckName }</h2>
+                <h2>Speed Game Exercise:</h2>
+                <div>
+                    ( { this.props.deckNames.join(", ")} )
+                </div>
 
                 <h3>Round: { this.state.round + 1 } / { this.props.cards.length }</h3>
 

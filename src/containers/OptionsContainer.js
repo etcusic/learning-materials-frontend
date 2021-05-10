@@ -93,13 +93,6 @@ class OptionsContainer extends Component {
                                         )
                                     }) 
                     }
-                    {/* <select onChange={ event => this.changeDeck(event) }>
-                        <option key="deck-0" value="0">-- select deck --</option>
-                        { this.props.decks
-                                    .filter(deck => deck.level === this.state.level)
-                                    .map((deck, i) => <option key={`deck-${i + 1}`} value={deck.id}>{ deck.name }</option>) 
-                        }
-                    </select> */}
                 
                 <h3>
                     { this.state.decks.length === 0 || 

@@ -25,7 +25,7 @@ class ExerciseContainer extends Component {
             view: <Practice 
                     level={ this.props.exercise.level }
                     deckNames={ this.props.exercise.deckNames } 
-                    cards={ shuffleCards(this.props.exercise.cards) } 
+                    cards={ this.props.exercise.cards } 
                     exitExercise={ this.props.exitExercise } 
             /> 
         })
