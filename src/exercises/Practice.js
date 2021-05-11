@@ -8,7 +8,7 @@ class Practice extends Component {
     constructor(){
         super()
         this.state = {
-            cards: [{side_a: "A", side_b: "B"}],
+            cards: [{english: "english", spanish: "spanish"}],
             completedCards: [],
             currentCardIndex: 0,
             nextRoundButton: false
@@ -101,6 +101,7 @@ class Practice extends Component {
                             />
                             :
                             <PracticeCard 
+                                front={ this.props.termDisplay }
                                 card={ this.state.cards[this.state.currentCardIndex] } 
                                 removeCard={ this.removeCard } 
                                 nextCard={ this.nextCard}

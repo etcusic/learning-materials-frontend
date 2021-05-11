@@ -5,12 +5,16 @@ class PracticeCard extends Component {
     constructor(){
         super()
         this.state = {
-            side: "side_a"
+            side: "english"
         }
     }
 
+    componentDidMount(){
+        this.setState({ side: this.props.front })
+    }
+
     flipCard = () => {
-        this.state.side === "side_a" ? this.setState({ side: "side_b" }) : this.setState({ side: "side_a" })
+        this.state.side === "english" ? this.setState({ side: "spanish" }) : this.setState({ side: "english" })
     }
 
     render() {

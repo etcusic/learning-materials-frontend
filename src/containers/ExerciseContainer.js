@@ -24,6 +24,8 @@ class ExerciseContainer extends Component {
         this.setState({ 
             view: <Practice 
                     level={ this.props.exercise.level }
+                    termDisplay={ this.props.exercise.termDisplay }
+                    cardDisplay={ this.props.exercise.cardDisplay }
                     deckNames={ this.props.exercise.deckNames } 
                     cards={ this.props.exercise.cards } 
                     exitExercise={ this.props.exitExercise } 
