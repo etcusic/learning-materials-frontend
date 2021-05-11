@@ -2,7 +2,7 @@ import React from 'react';
 import SpeedGameCard from './SpeedGameCard'
 
 
-const SpeedGameBoard = ({ cards, selectCard }) => {
+const SpeedGameBoard = ({ cardDisplay, cards, selectCard }) => {
 
     return (
         <table>
@@ -12,7 +12,7 @@ const SpeedGameBoard = ({ cards, selectCard }) => {
                     return (
                         <SpeedGameCard 
                             index={ index }
-                            term={ card["side_b"] }
+                            term={ card[cardDisplay] }
                             selectCard={ selectCard }
                         />
                     )

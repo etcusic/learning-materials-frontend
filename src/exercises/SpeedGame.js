@@ -11,7 +11,7 @@ class SpeedGame extends Component {
             round: 0,
             score: 0,
             timer: 11,
-            currentSet: [{side_a: "Side A", side_b: "Side B"}],
+            currentSet: [{english: "English Side", spanish: "Spanish Side"}],
             inPlay: true
         }
     }
@@ -45,7 +45,7 @@ class SpeedGame extends Component {
 
     selectCard = (answer) => {
         let score = this.state.score
-        answer === this.props.cards[this.state.round]["side_b"] ? score += this.state.timer : score -= this.state.timer
+        answer === this.props.cards[this.state.round][this.props.cardDisplay] ? score += this.state.timer : score -= this.state.timer
         let nextRound = this.state.round + 1
         this.setRound(score, nextRound)
     }
@@ -71,7 +71,7 @@ class SpeedGame extends Component {
             round: 0,
             score: score,
             timer: 11,
-            currentSet: [{side_a: "", side_b: ""}, {side_a: "", side_b: ""}, {side_a: "", side_b: ""}, {side_a: "", side_b: ""}],
+            currentSet: [{english: "", spanish: ""}, {english: "", spanish: ""}, {english: "", spanish: ""}, {english: "", spanish: ""}],
             inPlay: false
         })
     }
@@ -102,10 +102,11 @@ class SpeedGame extends Component {
 
                 <h3>Timer: { this.state.timer }</h3>
 
-                <h1>- { this.props.cards[this.state.round]["side_a"] } -</h1>
+                <h1>- { this.props.cards[this.state.round][this.props.termDisplay] } -</h1>
 
                 <SpeedGameBoard 
-                    cards={this.state.currentSet } 
+                    cardDisplay={ this.props.cardDisplay }
+                    cards={ this.state.currentSet } 
                     selectCard={ this.selectCard }
                 />
 
