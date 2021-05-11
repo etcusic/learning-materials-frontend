@@ -5,6 +5,7 @@ import MultipleChoice from '../exercises/MultipleChoice';
 import SpeedGame from '../exercises/SpeedGame';
 import Bingo from '../exercises/Bingo';
 import { shuffleCards } from '../helperFunctions/shuffleCards';
+import { notEnoughCards } from '../errors/notEnoughCards';
 
 class ExerciseContainer extends Component {
 
@@ -61,17 +62,22 @@ class ExerciseContainer extends Component {
     }
 
     setBingo = () => {
-        this.setState({ 
-            view: <Bingo 
-                    level={ this.props.exercise.level }
-                    deckNames={ this.props.exercise.deckNames } 
-                    termDisplay={ this.props.exercise.termDisplay }
-                    cardDisplay={ this.props.exercise.cardDisplay }
-                    cards={ shuffleCards(this.props.exercise.cards) } 
-                    exitExercise={ this.props.exitExercise } 
-                    changeView={ this.props.changeView }
-            /> 
-        })
+        // check for valid this.props.exercise.cards.length => throw error
+        if (this.props.exercise.cards.length < 24){
+            notEnoughCards("Bingo")
+        } else {
+            this.setState({ 
+                view: <Bingo 
+                        level={ this.props.exercise.level }
+                        deckNames={ this.props.exercise.deckNames } 
+                        termDisplay={ this.props.exercise.termDisplay }
+                        cardDisplay={ this.props.exercise.cardDisplay }
+                        cards={ shuffleCards(this.props.exercise.cards) } 
+                        exitExercise={ this.props.exitExercise } 
+                        changeView={ this.props.changeView }
+                /> 
+            })
+        }
     }
 
     setActivity = (activity) => {

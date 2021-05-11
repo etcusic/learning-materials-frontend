@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { initializeApp } from '../actions/initializeApp'
 import { createExerciseObject } from '../helperFunctions/createExerciseObject.js'
+import { validateExercise } from '../helperFunctions/validateExercise.js'
 import Placeholder from '../components/Placeholder.js'
 import Welcome from '../components/Welcome.js'
 import OptionsContainer from './OptionsContainer';
@@ -32,12 +33,16 @@ class Home extends Component {
 
     setExercise = (exercise) => {
         let newExercise = createExerciseObject(exercise)
-        this.setState({ 
-            view: <BeginExerciseButton 
+        let validExercise = validateExercise(newExercise)
+        if (validExercise) {
+            this.setState({ 
+                view: <BeginExerciseButton 
                     exercise={ newExercise } 
                     beginExercise={ this.beginExercise } 
                     displayOptions={ this.displayOptions }
                 /> })
+        }
+        
     }
 
     displayOptions = () => {

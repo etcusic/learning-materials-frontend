@@ -1,5 +1,4 @@
 export const createExerciseObject = exercise => {
-    console.log(exercise)
     let newExercise = {
         activity: exercise.activity,
         level: exercise.level,
