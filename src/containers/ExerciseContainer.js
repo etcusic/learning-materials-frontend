@@ -24,9 +24,9 @@ class ExerciseContainer extends Component {
         this.setState({ 
             view: <Practice 
                     level={ this.props.exercise.level }
+                    deckNames={ this.props.exercise.deckNames } 
                     termDisplay={ this.props.exercise.termDisplay }
                     cardDisplay={ this.props.exercise.cardDisplay }
-                    deckNames={ this.props.exercise.deckNames } 
                     cards={ this.props.exercise.cards } 
                     exitExercise={ this.props.exitExercise } 
             /> 
@@ -38,6 +38,8 @@ class ExerciseContainer extends Component {
             view: <MultipleChoice 
                     level={ this.props.exercise.level }
                     deckNames={ this.props.exercise.deckNames } 
+                    termDisplay={ this.props.exercise.termDisplay }
+                    cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffleCards(this.props.exercise.cards) } 
                     exitExercise={ this.props.exitExercise } 
                     setNewView={ this.setNewView } 
@@ -50,6 +52,8 @@ class ExerciseContainer extends Component {
             view: <SpeedGame 
                     level={ this.props.exercise.level }
                     deckNames={ this.props.exercise.deckNames } 
+                    termDisplay={ this.props.exercise.termDisplay }
+                    cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffleCards(this.props.exercise.cards) }  
                     exitExercise={ this.props.exitExercise } 
             /> 
@@ -61,6 +65,8 @@ class ExerciseContainer extends Component {
             view: <Bingo 
                     level={ this.props.exercise.level }
                     deckNames={ this.props.exercise.deckNames } 
+                    termDisplay={ this.props.exercise.termDisplay }
+                    cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffleCards(this.props.exercise.cards) } 
                     exitExercise={ this.props.exitExercise } 
                     changeView={ this.props.changeView }
