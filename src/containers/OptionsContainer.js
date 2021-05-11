@@ -7,7 +7,8 @@ class OptionsContainer extends Component {
         this.state = { 
             level: 0, 
             decks: [],
-            activity: "invalid"
+            activity: "invalid",
+            displaySide: "invalid"
         }
     }
 
@@ -32,9 +33,29 @@ class OptionsContainer extends Component {
         )
     }
 
+    displaySides = () => {
+        const activities = ["english", "spanish"]
+        return (
+            <select onChange={ event => this.changeDisplaySide(event) }>
+                <option key="side-0" value="invalid">-- select activity --</option>
+                { activities.map((activity, i) => <option key={`side-${i + 1}`} value={ activity }>{ activity }</option>) }
+            </select>
+        )
+    }
+
     changeLevel = (event) => {
         let value = parseInt(event.target.value)
         this.setState({ level: value })
+    }
+
+    changeActivity = (event) => {
+        let value = event.target.value
+        this.setState({ activity: value })
+    }
+
+    changeDisplaySide = (event) => {
+        let value = event.target.value
+        this.setState({ displaySide: value })
     }
 
     addDeck = (event) => {
@@ -46,11 +67,6 @@ class OptionsContainer extends Component {
             decks = decks.filter(deck => deck.id !== value)
         }
         this.setState({ decks: decks })
-    }
-
-    changeActivity = (event) => {
-        let value = event.target.value
-        this.setState({ activity: value })
     }
 
     checkState = () => {
@@ -70,6 +86,11 @@ class OptionsContainer extends Component {
                 <h2>
                     <label>Activity: </label>
                     { this.displayActivities() }
+                </h2>
+
+                <h2>
+                    <label>Display side: </label>
+                    { this.displaySides() }
                 </h2>
 
                 <h2>
@@ -95,10 +116,14 @@ class OptionsContainer extends Component {
                     }
                 
                 <h3>
-                    { this.state.decks.length === 0 || 
+                    {   // check to make sure all fields are valid => if true, display button
+                        this.state.decks.length === 0 || 
                         this.state.level === 0 || 
-                        this.state.activity === "invalid" ? 
-                        "All fields must be valid to continue" : 
+                        this.state.activity === "invalid" ||
+                        this.state.displaySide === "invalid" 
+                        ? 
+                        "All fields must be valid to continue" 
+                        : 
                         <button onClick={ () => this.props.setExercise(this.state) }>Set Exercise</button>
                     }
                 </h3>

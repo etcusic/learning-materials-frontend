@@ -12,6 +12,7 @@ class Bingo extends Component {
 
     componentDidMount(){
         let cards = shuffleCards(this.props.cards)
+        console.log(cards)
         this.setState({ 
             cards: cards
         })
@@ -26,7 +27,10 @@ class Bingo extends Component {
             <div>
                 <button onClick={ this.checkState }>Check State</button>
 
-                <h2>Bingo Exercise</h2>
+                <h2>Bingo Exercise:</h2>
+                <div>
+                    ( { this.props.deckNames.join(", ")} )
+                </div>
                 
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img>
 

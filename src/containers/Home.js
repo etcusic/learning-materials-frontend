@@ -31,6 +31,7 @@ class Home extends Component {
     }
 
     setExercise = (exercise) => {
+        console.log(exercise)
         let newExercise = createExerciseObject(exercise)
         this.setState({ 
             view: <BeginExerciseButton 
