@@ -34,11 +34,11 @@ class OptionsContainer extends Component {
     }
 
     displaySides = () => {
-        const activities = ["english", "spanish"]
+        const sides = ["english", "spanish"]
         return (
             <select onChange={ event => this.changeDisplaySide(event) }>
-                <option key="side-0" value="invalid">-- select activity --</option>
-                { activities.map((activity, i) => <option key={`side-${i + 1}`} value={ activity }>{ activity }</option>) }
+                <option key="side-0" value="invalid">-- select display side --</option>
+                { sides.map((side, i) => <option key={`${side}`} value={ side }>{ side }</option>) }
             </select>
         )
     }
@@ -96,23 +96,23 @@ class OptionsContainer extends Component {
                 <h2>
                     <label>Deck{`(s):`} </label>
                 </h2>
-                    { this.props.decks
+                    { 
+                        this.props.decks
                                     .filter(deck => deck.level === this.state.level)
                                     .map((deck, i) => {
                                         return (
-                                            <div>
+                                            <div key={ deck.name } >
                                                 <input 
                                                     type="checkbox"
-                                                    key={`deck-${i + 1}`} 
-                                                    value={deck.id} 
-                                                    onChange={this.addDeck}
+                                                    value={ deck.id } 
+                                                    onChange={ this.addDeck } 
                                                 />
                                                 <label>
                                                     { deck.name } - { deck.cards.length }
                                                 </label>
                                             </div>
                                         )
-                                    }) 
+                        })
                     }
                 
                 <h3>
