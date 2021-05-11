@@ -51,6 +51,7 @@ class Home extends Component {
     }
 
     beginExercise = (exercise) => {
+        console.log(exercise)
         this.setState({ 
             view: <ExerciseContainer 
                     exercise={ exercise } 

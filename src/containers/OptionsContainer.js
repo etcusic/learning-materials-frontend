@@ -99,7 +99,7 @@ class OptionsContainer extends Component {
                     { 
                         this.props.decks
                                     .filter(deck => deck.level === this.state.level)
-                                    .map((deck, i) => {
+                                    .map(deck => {
                                         return (
                                             <div key={ deck.name } >
                                                 <input 
