@@ -11,7 +11,7 @@ class MultipleChoice extends Component {
             cards: [],
             round: 0,
             correctAnswers: 0,
-            currentCard: {side_a: "Side A", side_b: "Side B"}, 
+            currentCard: {english: "English Side", spanish: "Spanish Side"}, 
             answerOptions: ["", "", "", ""],
             answer: ""
         }
@@ -20,7 +20,7 @@ class MultipleChoice extends Component {
     componentDidMount(){
         let cards = shuffleCards(this.props.cards)
         let currentCard = cards[0]
-        let answerOptions = shuffleCards(cards.slice(0, 4)).map(card => card.side_b)
+        let answerOptions = shuffleCards(cards.slice(0, 4)).map(card => card[this.props.cardDisplay])
         this.setState({ 
             cards: cards,
             currentCard: currentCard,
@@ -35,7 +35,7 @@ class MultipleChoice extends Component {
     }
 
     submitAnswer = () => {
-        let point = this.state.answer === this.state.currentCard.side_b ? 1 : 0
+        let point = this.state.answer === this.state.currentCard[this.props.cardDisplay] ? 1 : 0
         if (this.state.answer === ""){
             alert('Invalid response. Please select one of the options!')
         } else if ((this.state.round + 1) < this.state.cards.length) {
@@ -57,7 +57,7 @@ class MultipleChoice extends Component {
         const nextRound = this.state.round + 1
         const addPoint = this.state.correctAnswers + point
         const options = this.shuffleMultipleChoice(nextRound)
-        const shuffledOptions = shuffleCards([...options]).map(card => card.side_b)
+        const shuffledOptions = shuffleCards([...options]).map(card => card[this.props.cardDisplay])
         this.setState({
             round: nextRound,
             correctAnswers: addPoint,
@@ -104,7 +104,7 @@ class MultipleChoice extends Component {
 
                 <h3>Score: { this.state.correctAnswers } / { this.state.round }</h3>
 
-                <h1>- { this.state.currentCard.side_a } -</h1>
+                <h1>- { this.state.currentCard[this.props.termDisplay] } -</h1>
 
                 <ul>
                 { 
