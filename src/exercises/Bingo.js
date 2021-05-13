@@ -16,7 +16,6 @@ class Bingo extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props)
         let boardCards = shuffleCards([...this.props.cards])
         this.setState({
             boardMatrix: [

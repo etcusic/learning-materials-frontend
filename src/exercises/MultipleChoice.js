@@ -77,17 +77,17 @@ class MultipleChoice extends Component {
                             result={ result } 
                             exitView={ this.props.exitExercise } 
                         />
-        this.props.setNewView(newView)
-    }
-
-    checkState = () => {
-        console.log(this.state)
+        this.props.changeView(newView)
     }
 
     selectCard = (option) => {
         this.setState({
             answer: option
         });
+    }
+
+    checkState = () => {
+        console.log(this.state)
     }
 
     render() {

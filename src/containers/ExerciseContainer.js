@@ -42,7 +42,7 @@ class ExerciseContainer extends Component {
                     cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffleCards(this.props.exercise.cards) } 
                     exitExercise={ this.props.exitExercise } 
-                    setNewView={ this.setNewView } 
+                    changeView={ this.setNewView } 
             /> 
         })
     }
@@ -56,6 +56,7 @@ class ExerciseContainer extends Component {
                     cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffleCards(this.props.exercise.cards) }  
                     exitExercise={ this.props.exitExercise } 
+                    changeView={ this.setNewView }
             /> 
         })
     }
@@ -70,7 +71,7 @@ class ExerciseContainer extends Component {
                     cardDisplay={ this.props.exercise.cardDisplay }
                     cards={ shuffledAndSliced } 
                     exitExercise={ this.props.exitExercise } 
-                    changeView={ this.props.changeView }
+                    changeView={ this.setNewView }
             /> 
         })
     }
