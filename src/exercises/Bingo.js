@@ -3,6 +3,7 @@ import { shuffleCards } from '../helperFunctions/shuffleCards'
 import { checkBingoWinner } from '../helperFunctions/checkBingoWinner'
 import BingoBoard from '../components/BingoBoard'
 import BingoCell from '../components/BingoCell'
+import BingoGameOver from '../components/BingoGameOver'
 
 class Bingo extends Component {
 
@@ -48,27 +49,34 @@ class Bingo extends Component {
     }
 
     executeAnswer = (card, row, column, color) => {
-        let bingoCell = this.createBingoCell(card, row, column, color)
         let boardMatrix = [...this.state.boardMatrix]
+        let bingoCell = this.createBingoCell(card, row, column, color)
         boardMatrix[row][column] = bingoCell
-        this.checkWinner(boardMatrix)
+        this.checkAnswer(boardMatrix)
     }
 
-    checkWinner = boardMatrix => {
+    checkAnswer = boardMatrix => {
         let nextRound = this.state.round + 1
-        console.log(nextRound)
         if (checkBingoWinner(boardMatrix)){
-            console.log("Winner!")
-            alert("Winner!")
+            this.endGame("You won, yay!!!", boardMatrix)
         } else if (nextRound > 24){
-            console.log("Loser!")
-            alert("Loser!")
+            this.endGame("You lost, bummer.", boardMatrix)
         } else {
             this.setState({
                 round: nextRound,
                 boardMatrix: boardMatrix
             })
         }
+    }
+
+    endGame = (message, boardMatrix) => {
+        this.props.changeView(
+            <BingoGameOver 
+                message={ message }
+                boardMatrix={ boardMatrix }
+                exitExercise={ this.props.exitExercise }
+            />
+        )
     }
 
     checkState = () => {
