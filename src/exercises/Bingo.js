@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import { checkBingoWinner } from '../helperFunctions/checkBingoWinner'
 import BingoBoard from '../components/BingoBoard'
 import BingoCell from '../components/BingoCell'
 
@@ -9,7 +10,8 @@ class Bingo extends Component {
         super()
         this.state = {
             round: 0,
-            boardMatrix: [[], [], [], [], []]
+            boardMatrix: [[], [], [], [], []],
+            winner: false
         }
     }
 
@@ -43,11 +45,7 @@ class Bingo extends Component {
     selectCard = (card, row, column) => {
         let term = this.props.cards[this.state.round][this.props.termDisplay]
         let answer = card[this.props.termDisplay]
-        if (term === answer){
-            this.executeAnswer(card, row, column, "green")
-        } else {
-            this.executeAnswer(card, row, column, "red")
-        }
+        term === answer ? this.executeAnswer(card, row, column, "green") : this.executeAnswer(card, row, column, "red")
     }
 
     executeAnswer = (card, row, column, color) => {
@@ -59,6 +57,9 @@ class Bingo extends Component {
             round: nextRound,
             boardMatrix: boardMatrix
         })
+        if (checkBingoWinner(boardMatrix)){
+            alert("Winner!")
+        }
     }
 
     checkState = () => {
