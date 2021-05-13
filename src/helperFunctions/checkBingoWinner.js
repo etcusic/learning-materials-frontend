@@ -11,10 +11,12 @@ const checkRows = matrixColors => {
         answer = true
     } 
     console.log(`check rows => ${answer}`)
+    return answer
 }
 
 const checkColumns = matrixColors => {
-    let answer = false
-    // let matrix = 
+    let matrix = [[], [], [], [], []]
+    matrixColors.forEach( row => row.forEach((cell, i) => matrix[i].push(cell)))
+    let answer = checkRows(matrix)
     console.log(`check columns => ${answer}`)
 }
