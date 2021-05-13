@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
+import BingoBoard from '../components/BingoBoard'
+import BingoCell from '../components/BingoCell'
 
 class Bingo extends Component {
 
@@ -14,9 +16,14 @@ class Bingo extends Component {
     componentDidMount(){
         console.log(this.props)
         let boardCards = shuffleCards([...this.props.cards])
-        // set up matrix of bingo cells receiving from boardCards
         this.setState({
-            boardMatrix: boardCards
+            boardMatrix: [
+                boardCards.slice(0, 5).map(card => <BingoCell card={ card } side={ this.props.cardDisplay } />),
+                boardCards.slice(5, 10).map(card => <BingoCell card={ card } side={ this.props.cardDisplay } />),
+                boardCards.slice(10, 15).map(card => <BingoCell card={ card } side={ this.props.cardDisplay } />),
+                boardCards.slice(15, 20).map(card => <BingoCell card={ card } side={ this.props.cardDisplay } />),
+                boardCards.slice(20).map(card => <BingoCell card={ card } side={ this.props.cardDisplay } />)
+            ]
         })
     }
 
@@ -37,6 +44,8 @@ class Bingo extends Component {
                 {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img> */}
 
                 <h1>Term:  { this.props.cards[this.state.round][this.props.termDisplay] }</h1>
+
+                <BingoBoard matrix={ this.state.boardMatrix } />
 
                 <br></br><br></br>
   
