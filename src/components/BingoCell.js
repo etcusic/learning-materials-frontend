@@ -6,7 +6,7 @@ const BingoCell = ({ row, column, card, side, color, selectCard }) => {
             key={ `bingo-cell-${row}-${column}` } 
             className="bingo-cell"
             style={{ backgroundColor: color }}
-            onClick={ () => selectCard("check one two") }
+            onClick={ () => selectCard(card, row, column) }
         >
             <div className="bingo-cell-text">
                 { card[side] }
