@@ -10,8 +10,7 @@ class Bingo extends Component {
         super()
         this.state = {
             round: 0,
-            boardMatrix: [[], [], [], [], []],
-            winner: false
+            boardMatrix: [[], [], [], [], []]
         }
     }
 
@@ -50,15 +49,25 @@ class Bingo extends Component {
 
     executeAnswer = (card, row, column, color) => {
         let bingoCell = this.createBingoCell(card, row, column, color)
-        let nextRound = this.state.round + 1
         let boardMatrix = [...this.state.boardMatrix]
         boardMatrix[row][column] = bingoCell
-        this.setState({
-            round: nextRound,
-            boardMatrix: boardMatrix
-        })
+        this.checkWinner(boardMatrix)
+    }
+
+    checkWinner = boardMatrix => {
+        let nextRound = this.state.round + 1
+        console.log(nextRound)
         if (checkBingoWinner(boardMatrix)){
+            console.log("Winner!")
             alert("Winner!")
+        } else if (nextRound > 24){
+            console.log("Loser!")
+            alert("Loser!")
+        } else {
+            this.setState({
+                round: nextRound,
+                boardMatrix: boardMatrix
+            })
         }
     }
 
@@ -78,13 +87,13 @@ class Bingo extends Component {
                 
                 {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0EUZ9lFKA-kWb2ddapVYDtN_JLECaISv7Eg&usqp=CAU" alt="exercise under construction"></img> */}
 
-                <h2>Round: {`${this.state.round + 1} / 24`}</h2>
+                <h2>Round: {`${this.state.round + 1} / 25`}</h2>
 
                 <h1>Term:  { this.props.cards[this.state.round][this.props.termDisplay] }</h1>
 
                 <BingoBoard matrix={ this.state.boardMatrix } />
 
-                <br></br><br></br>
+                <br></br><br></br><br></br>
   
                 <button onClick={ this.props.exitExercise }>Exit Exercise</button>
             </div>

@@ -6,8 +6,7 @@ export const checkBingoWinner = (boardMatrix) => {
         checkDiagonalOne(matrixColors),
         checkDiagonalTwo(matrixColors)
     ]
-    console.log(`array => ${checkers}`)
-    console.log(`T or F => ${checkers.find(check => check === true)}`)
+    return checkers.find(check => check) ? true : false
 }
 
 const checkRows = matrixColors => {
