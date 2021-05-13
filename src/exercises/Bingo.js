@@ -18,13 +18,30 @@ class Bingo extends Component {
         let boardCards = shuffleCards([...this.props.cards])
         this.setState({
             boardMatrix: [
-                boardCards.slice(0, 5).map((card, index) => <BingoCell keyId={`cell-1-${index + 1}`} card={ card } side={ this.props.cardDisplay } />),
-                boardCards.slice(5, 10).map((card, index) => <BingoCell keyId={`cell-2-${index + 1}`} card={ card } side={ this.props.cardDisplay } />),
-                boardCards.slice(10, 15).map((card, index) => <BingoCell keyId={`cell-3-${index + 1}`} card={ card } side={ this.props.cardDisplay } />),
-                boardCards.slice(15, 20).map((card, index) => <BingoCell keyId={`cell-4-${index + 1}`} card={ card } side={ this.props.cardDisplay } />),
-                boardCards.slice(20).map((card, index) => <BingoCell keyId={`cell-5-${index + 1}`} card={ card } side={ this.props.cardDisplay } />)
-            ]
+                boardCards.slice(0, 5).map((card, index) => this.createBingoCell(card, index, 0)),
+                boardCards.slice(5, 10).map((card, index) => this.createBingoCell(card, index, 1)),
+                boardCards.slice(10, 15).map((card, index) => this.createBingoCell(card, index, 2)),
+                boardCards.slice(15, 20).map((card, index) => this.createBingoCell(card, index, 3)),
+                boardCards.slice(20).map((card, index) => this.createBingoCell(card, index, 4))
+        ]
         })
+    }
+
+    createBingoCell = (card, index, row) => {
+        return (
+            <BingoCell 
+                row={ row }
+                column={ index }
+                card={ card } 
+                side={ this.props.cardDisplay }
+                color={ "yellow" }
+                selectCard={ this.selectCard }
+            />
+        )
+    }
+
+    selectCard = (x) => {
+        console.log(x)
     }
 
     checkState = () => {
