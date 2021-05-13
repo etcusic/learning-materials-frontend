@@ -61,13 +61,14 @@ class ExerciseContainer extends Component {
     }
 
     setBingo = () => {
+        let shuffledAndSliced = shuffleCards(this.props.exercise.cards).slice(0, 25)
         this.setState({ 
             view: <Bingo 
                     level={ this.props.exercise.level }
                     deckNames={ this.props.exercise.deckNames } 
                     termDisplay={ this.props.exercise.termDisplay }
                     cardDisplay={ this.props.exercise.cardDisplay }
-                    cards={ shuffleCards(this.props.exercise.cards) } 
+                    cards={ shuffledAndSliced } 
                     exitExercise={ this.props.exitExercise } 
                     changeView={ this.props.changeView }
             /> 

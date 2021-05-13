@@ -33,8 +33,8 @@ function validateSpeedGame(exercise){
 }
 
 function validateBingo(exercise){
-    if (exercise.cards.length < 24){
-        alert(`You need at least 24 vocab cards to play Bingo. Please select another set(s).`)
+    if (exercise.cards.length < 25){
+        alert(`You need at least 25 vocab cards to play Bingo. Please select another set(s).`)
         return false
     } else {
         return true
