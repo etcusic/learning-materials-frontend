@@ -1,11 +1,7 @@
 import { API_ROOT } from '../apiRoot'
 
-export const initializeApp = (setDecks) => {
-    console.log(API_ROOT)
+export const fetchDecks = () => {
     return fetch(`${API_ROOT}api_decks`)
     .then(response => response.json())
-    .then(decks => {
-        console.log(decks)
-        setDecks(decks)
-    })
+    .then(decks => decks)
 }

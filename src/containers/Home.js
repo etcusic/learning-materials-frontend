@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { initializeApp } from '../actions/initializeApp'
+import { fetchDecks } from '../actions/initializeApp'
 import { createExerciseObject } from '../helperFunctions/createExerciseObject.js'
 import { validateExercise } from '../helperFunctions/validateExercise.js'
 import Placeholder from '../components/Placeholder.js'
@@ -7,6 +7,7 @@ import Welcome from '../components/Welcome.js'
 import OptionsContainer from './OptionsContainer';
 import ExerciseContainer from './ExerciseContainer';
 import BeginExerciseButton from '../components/BeginExerciseButton'
+import PleaseWait from '../components/PleaseWait'
 
 class Home extends Component {
 
@@ -14,13 +15,15 @@ class Home extends Component {
         super()
         this.state = {
             decks: [],
-            view: <Placeholder />
+            view: <PleaseWait />
         }
     }
 
     componentDidMount(){
-       initializeApp(this.setDecks)
-       this.setState({ view: <Welcome displayOptions={ this.displayOptions } /> })
+        const view = <Welcome displayOptions={ this.displayOptions } />
+        fetchDecks()
+        .then(decks => this.setDecks(decks))
+        .then(() => this.changeView(view))
     }
 
     setDecks = (decks) => {
