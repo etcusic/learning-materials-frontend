@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { shuffleCards } from '../helperFunctions/shuffleCards'
 import { sleepOneSecond } from '../helperFunctions/sleepOneSecond'
 import SpeedGameBoard from '../components/SpeedGameBoard'
+import SpeedGameOver from '../components/SpeedGameOver';
 
 class SpeedGame extends Component {
 
@@ -17,6 +18,7 @@ class SpeedGame extends Component {
     }
 
     componentDidMount(){
+        console.log(this.props)
         this.initializeGame()
     }
 
@@ -79,7 +81,13 @@ class SpeedGame extends Component {
     gameOver = () => {
         // need to add a view that shows game score - maybe send a game log fetch request as well
         console.log("Game Over")
-        this.props.exitExercise()
+        this.props.changeView(
+            <SpeedGameOver 
+                deckNames={ this.props.deckNames } 
+                score={ this.state.score } 
+                exitView={ this.props.exitExercise } 
+            />
+        )
     }
 
     checkState = () => {
