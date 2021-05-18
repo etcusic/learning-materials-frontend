@@ -85,7 +85,7 @@ class Bingo extends Component {
     render() {
         return (
             <div>
-                <button onClick={ this.checkState }>Check State</button>
+                {/* <button onClick={ this.checkState }>Check State</button> */}
 
                 <h2>Bingo Exercise:</h2>
                 <div>

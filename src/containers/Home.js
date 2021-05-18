@@ -76,7 +76,7 @@ class Home extends Component {
         <div>
             { this.state.view }
             <br></br><br></br><br></br><br></br>
-            <button onClick={ this.checkState }>Check State</button>
+            {/* <button onClick={ this.checkState }>Check State</button> */}
         </div>
         );
     }

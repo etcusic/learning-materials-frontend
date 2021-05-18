@@ -93,7 +93,7 @@ class MultipleChoice extends Component {
     render() {
         return (    
             <div>
-                <button onClick={ this.checkState }>Check State</button>
+                {/* <button onClick={ this.checkState }>Check State</button> */}
                 
                 <h2>Multiple Choice Exercise:</h2>
                 <div>

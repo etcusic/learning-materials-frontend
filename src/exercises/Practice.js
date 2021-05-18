@@ -16,7 +16,6 @@ class Practice extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props)
         this.resetDeck()
     }
 
@@ -73,7 +72,7 @@ class Practice extends Component {
     render() {
         return (
             <div>
-                <button onClick={ this.checkState }>Check State</button>
+                {/* <button onClick={ this.checkState }>Check State</button> */}
                 <h2>Practice Exercise:</h2>
                 <div>
                     ( { this.props.deckNames.join(", ")} )

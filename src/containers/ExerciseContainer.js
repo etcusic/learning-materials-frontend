@@ -104,7 +104,6 @@ class ExerciseContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Exercise Container</h1>
                 { this.state.view }
             </div>
         )
