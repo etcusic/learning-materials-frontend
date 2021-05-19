@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchDecks } from '../actions/initializeApp'
+import { fetchDecks } from '../actions/fetchDecks'
 import { createExerciseObject } from '../helperFunctions/createExerciseObject.js'
 import { validateExercise } from '../helperFunctions/validateExercise.js'
 import Placeholder from '../components/Placeholder.js'
