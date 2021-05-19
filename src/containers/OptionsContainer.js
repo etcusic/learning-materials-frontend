@@ -116,7 +116,7 @@ class OptionsContainer extends Component {
                     }
                 
                 <h3>
-                    {   // check to make sure all fields are valid => if true, display button
+                    {   // check to make sure all fields are valid => if true, display button - should make this it's own component
                         this.state.decks.length === 0 || 
                         this.state.level === 0 || 
                         this.state.activity === "invalid" ||

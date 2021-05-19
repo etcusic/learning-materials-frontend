@@ -45,7 +45,6 @@ class Home extends Component {
                     displayOptions={ this.displayOptions }
                 /> })
         }
-        
     }
 
     displayOptions = () => {
