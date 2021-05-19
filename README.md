@@ -1,70 +1,22 @@
-# Getting Started with Create React App
+- url: https://etcusic.github.io/learning-materials-frontend/ 
+- api repo: https://github.com/etcusic/conexion-resource-mgmt 
+- video demo: 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Description: This is a single page React.js application created for the purpose of language acquisition exercises. The basic concept is using flash cards, but there are different exercise and games designed so that the student can interact with the learning materials in different ways depending on how they are best engaged. There is a separate Rails application where administrators can create and edit these resources. The Rails app can then act as an API and render the relevant resources in JSON format for this React app to be able to read (link to Rails repo above).
 
-## Available Scripts
+Instructions to run locally:
 
-In the project directory, you can run:
+For the backend, clone the repository from the Rails repo link and run the following commands in your CLI:
 
-### `yarn start`
+- bundle install 
+- rake db:migrate 
+- rails s -p 3001 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+(to initialize the seed data, type in 'rake db:seed' into your console)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This should set up the rails server if everything runs correctly. Then clone this repo and run the following commands:
 
-### `yarn test`
+- npm install 
+- npm start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: This application still needs a facelift. It is completely functional, but I haven't added hardly any CSS to it to make it look good. Hopefully I can get around to this soon!
